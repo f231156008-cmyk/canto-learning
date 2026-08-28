@@ -1,17 +1,29 @@
-# Cantonese Learning — Standalone Edition
+# Cantonese Learning
 
-This folder is a static, independent version of the Cantonese learning site.
+独立运行的粤语学习网站。无需 ChatGPT 或 OpenAI 运行环境，入口是 `index.html`。
 
-- No ChatGPT login or OpenAI site runtime is required.
-- Vocabulary, audio, quizzes, characters, and local challenges run directly from this folder.
-- Learning records are stored locally in each learner's browser.
+## 目录
 
-## Deploy
+```text
+├─ *.html            页面；保留在根目录，网址简单稳定
+├─ assets/
+│  ├─ css/           全站样式
+│  ├─ js/            学习、测试与互动逻辑
+│  └─ icons/         图标
+├─ data/
+│  ├─ words.json     主词库
+│  ├─ words.csv      便于表格编辑的词库副本
+│  ├─ hanzi/         繁体字笔画数据
+│  └─ review/        词条例句审核数据
+└─ audio/            单词、例句和闯关音频
+```
 
-Upload this whole folder to any static host, such as Cloudflare Pages, Netlify, or GitHub Pages. The entry page is `index.html`.
+## GitHub 在这里做什么
 
-For Cloudflare Pages, create a project from a Git repository and set the build output folder to this folder, with no build command.
+GitHub 仓库是项目的云端档案库。每次 `commit` 都像一个带说明的存档点，记录哪些文件发生了变化；`push` 把这些存档上传到 GitHub。需要时可以比较版本、找回旧文件或建立独立实验分支。
 
-## Next upgrade
+正式网站由 `full-site` 分支通过 GitHub Pages 发布。日常流程是：修改本地文件 → 测试 → commit → push → GitHub Pages 自动更新。
 
-To let learners sign in and retain progress across devices, connect Supabase or Firebase later. The current standalone edition intentionally has no account or central database dependency.
+## 学习进度
+
+当前版本把学习记录保存在浏览器的 localStorage 中；同一设备可保留，换设备不会自动同步。后续接入 Supabase 后，可加入邮箱或 Google 登录及跨设备同步。

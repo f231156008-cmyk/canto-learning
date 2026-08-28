@@ -10,7 +10,7 @@ if (savedVoice === "female" || savedVoice === "male") elements.voiceSelect.value
 
 async function loadWords() {
     try {
-        const response = await fetch("words.json");
+        const response = await fetch("data/words.json");
         if (!response.ok) throw new Error();
         allWords = await response.json();
         if (!Array.isArray(allWords) || !allWords.length) throw new Error();

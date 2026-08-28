@@ -138,7 +138,7 @@ document.getElementById("generatedAudio").addEventListener("click", () => {
 });
 document.getElementById("generatedNext").addEventListener("click", newGeneratedQuestion);
 
-fetch("words.json").then(response => response.json()).then(data => {
+fetch("data/words.json").then(response => response.json()).then(data => {
     modeWords.push(...data.filter(w => w.word && w.jyutping));
     showToneMarkQuestion();
 }).catch(() => {

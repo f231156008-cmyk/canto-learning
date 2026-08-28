@@ -15,5 +15,5 @@ const localFallbackWords=[
 {id:-6,word:'係',jyutping:'hai6',meaning:'是',english:'to be',audio:{female:'009-female.mp3'}}
 ];
 function startTests(source){words=source.filter(w=>tone(w)&&w.audio?.female);newQ();newC();stat()}
-if(location.protocol==='file:')startTests(localFallbackWords);else fetch('words.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(startTests).catch(()=>startTests(localFallbackWords));
+if(location.protocol==='file:')startTests(localFallbackWords);else fetch('data/words.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(startTests).catch(()=>startTests(localFallbackWords));
 initials[13]=['kw','誇','kwaa1','舌根闭塞、双唇收圆，并明显送气。'];inventory('initials','initialDetail',initials,true);

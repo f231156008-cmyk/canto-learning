@@ -60,7 +60,7 @@ function renderWords() {
 
 async function loadWords() {
     try {
-        const response = await fetch("words.json");
+        const response = await fetch("data/words.json");
         if (!response.ok) throw new Error("词库读取失败");
         words = await response.json();
 

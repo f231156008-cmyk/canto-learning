@@ -67,7 +67,7 @@ async function loadWords() {
     try {
 
         const response =
-            await fetch("words.json");
+            await fetch("data/words.json");
 
 
         // 检查 JSON 是否成功读取
