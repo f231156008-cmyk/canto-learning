@@ -656,11 +656,18 @@ async function checkToneMarkAnswer() {
 
 function playToneMarkAudio() {
     if (!toneMarkQuestion || !toneMarkQuestion.audio) return;
-    toneMarkAudio.src = `audio/${toneMarkQuestion.audio[voiceSelect.value]}`;
+    const useSentenceAudio = toneMarkQuestion.audioStatus === "needs_review" && toneMarkQuestion.sentenceAudio?.[voiceSelect.value];
+    const audioFile = useSentenceAudio
+        ? toneMarkQuestion.sentenceAudio[voiceSelect.value]
+        : toneMarkQuestion.audio[voiceSelect.value];
+    toneMarkAudio.src = `audio/${audioFile}`;
     toneMarkAudio.currentTime = 0;
     toneMarkAudio.play().catch(() => {
         document.getElementById("toneMarkSaveStatus").textContent = "录音暂时无法播放。";
     });
+    if (useSentenceAudio) {
+        document.getElementById("toneMarkSaveStatus").textContent = "单字录音待校对；当前播放含目标词的例句。";
+    }
 }
 
 document.getElementById("checkToneMark").addEventListener("click", checkToneMarkAnswer);

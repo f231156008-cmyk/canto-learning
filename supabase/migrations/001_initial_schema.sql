@@ -23,6 +23,8 @@ create table public.words (
   meaning_zh text,
   meaning_en text,
   pronunciation_note text,
+  audio_status text not null default 'unreviewed' check (audio_status in ('unreviewed', 'verified', 'needs_review')),
+  audio_review_note text,
   audio_female text,
   audio_male text,
   is_published boolean not null default true,

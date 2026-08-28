@@ -89,6 +89,10 @@ wordList.addEventListener("click", function(event) {
     if (!button) return;
     const word = words.find(item => String(item.id) === button.dataset.wordId);
     if (!word) return;
+    if (word.audioStatus === "needs_review") {
+        message.textContent = word.audioReviewNote || "这条录音正在校对，暂不播放。";
+        return;
+    }
     wordAudio.src = `audio/${word.audio[voiceSelect.value]}`;
     wordAudio.currentTime = 0;
     wordAudio.play().catch(function() {

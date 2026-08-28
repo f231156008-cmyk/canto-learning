@@ -97,6 +97,11 @@ async function showStudyWord() {
     const audioPath = `audio/${item.audio[elements.voiceSelect.value]}`;
     elements.wordAudio.src = audioPath;
     elements.audioButton.disabled = true;
+    if (item.audioStatus === "needs_review") {
+        elements.audioButton.textContent = "多音字录音待校对";
+        elements.message.textContent = item.audioReviewNote || "这条录音正在校对。";
+        return;
+    }
     elements.audioButton.textContent = "检查音频中……";
     try {
         const response = await fetch(audioPath, { method: "HEAD" });
@@ -150,7 +155,9 @@ function checkAnswer(button, choice, item) {
 }
 
 function playChallengeAudio(item, afterPlayback) {
-    const audioPath = `audio/${item.audio[elements.voiceSelect.value]}`;
+    const useSentenceAudio = item.audioStatus === "needs_review" && item.sentenceAudio?.[elements.voiceSelect.value];
+    const audioFile = useSentenceAudio ? item.sentenceAudio[elements.voiceSelect.value] : item.audio[elements.voiceSelect.value];
+    const audioPath = `audio/${audioFile}`;
     let finished = false;
     const finishOnce = () => {
         if (finished) return;
@@ -162,6 +169,7 @@ function playChallengeAudio(item, afterPlayback) {
     elements.wordAudio.currentTime = 0;
     elements.wordAudio.onended = finishOnce;
     elements.wordAudio.play().catch(() => window.setTimeout(finishOnce, 500));
+    if (useSentenceAudio) elements.challengeFeedback.textContent += " 单字录音待校对，当前播放例句。";
     if (afterPlayback) window.setTimeout(finishOnce, 3500);
 }
 
