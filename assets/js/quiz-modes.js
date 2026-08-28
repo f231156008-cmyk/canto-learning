@@ -47,7 +47,7 @@ function newGeneratedQuestion() {
     if (selectedMode === "order") {
         const pool = modeWords.filter(w => w.example && w.example.length >= 5 && w.example.length <= 14 && w.sentenceAudio && w.sentenceAudio.female);
         generatedQuestion = randomWord(pool);
-        setGeneratedText(title, instruction, generatedQuestion.translation || generatedQuestion.sentenceEnglish);
+        setGeneratedText(title, instruction, generatedQuestion.translation || "");
         document.getElementById("orderAnswer").hidden = false;
         document.getElementById("orderProgress").hidden = false;
         document.getElementById("orderControls").hidden = false;
@@ -85,7 +85,7 @@ async function recordGeneratedAnswer(answer, correct) {
     const wanted = correctGeneratedAnswer();
     const ok = answer === wanted;
     document.getElementById("generatedResult").innerHTML = ok
-        ? `✓ 正确<br>${generatedQuestion.sentenceJyutping || ""}<br>${generatedQuestion.translation || generatedQuestion.sentenceEnglish || ""}`
+        ? `✓ 正确<br>${generatedQuestion.sentenceJyutping || ""}<br>${generatedQuestion.translation || ""}`
         : `✗ 正确答案：${wanted}<br>${generatedQuestion.sentenceJyutping || ""}`;
     document.querySelectorAll("#generatedOptions button").forEach(button => button.disabled = true);
     const attempts = JSON.parse(localStorage.getItem("cantoStandaloneQuiz") || "[]");
