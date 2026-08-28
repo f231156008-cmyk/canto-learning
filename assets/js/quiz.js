@@ -633,7 +633,14 @@ async function checkToneMarkAnswer() {
         }
         return `${part.base}：你选 ${selected[index]} 声（${toneNames[selected[index]]}），正确是 ${part.tone} 声（${toneNames[part.tone]}）`;
     }).join("\n");
-    document.getElementById("toneMarkResult").textContent = `${correct ? "✓ 正确" : `✗ 正确答案：${toneMarkQuestion.jyutping}`}\n${explanation}`;
+    const meaning = toneMarkQuestion.meaning ? `词义：${toneMarkQuestion.meaning}` : "";
+    const example = toneMarkQuestion.example ? `例句：${toneMarkQuestion.example}` : "";
+    document.getElementById("toneMarkResult").textContent = [
+        correct ? "✓ 正确" : `✗ 正确答案：${toneMarkQuestion.jyutping}`,
+        explanation,
+        meaning,
+        example
+    ].filter(Boolean).join("\n");
     playToneMarkAudio();
     document.getElementById("toneMarkReplay").hidden = false;
     showToneMarkStats();
