@@ -3,7 +3,7 @@ let allWords = [], groups = [], words = [], studyIndex = 0, challengeIndex = 0, 
 let remoteProgress = new Map();
 
 const elements = {};
-["progress", "word", "jyutping", "example", "voiceSelect", "audioButton", "wordAudio", "sentenceAudioButton", "sentenceAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
+["progress", "word", "jyutping", "meaning", "example", "voiceSelect", "audioButton", "wordAudio", "sentenceAudioButton", "sentenceAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
 
 const savedVoice = localStorage.getItem("cantoVoice");
 if (savedVoice === "female" || savedVoice === "male") elements.voiceSelect.value = savedVoice;
@@ -90,6 +90,7 @@ async function showStudyWord() {
     elements.progress.textContent = `${group.label}｜学习 ${studyIndex + 1}/${words.length}`;
     elements.word.textContent = item.word;
     elements.jyutping.textContent = item.jyutping;
+    elements.meaning.textContent = item.meaning || "释义待补充";
     elements.example.textContent = item.example;
     elements.message.textContent = "";
     elements.previousButton.disabled = studyIndex === 0;
@@ -144,13 +145,13 @@ function checkAnswer(button, choice, item) {
     if (choice !== item.jyutping) {
         button.classList.add("wrong-answer");
         button.disabled = true;
-        elements.challengeFeedback.textContent = "未答对，听完再试。";
+        elements.challengeFeedback.textContent = `未答对，听完再试。释义：${item.meaning || "待补充"}`;
         playChallengeAudio(item);
         return;
     }
     button.classList.add("correct-answer");
     elements.challengeOptions.querySelectorAll("button").forEach(option => { option.disabled = true; });
-    elements.challengeFeedback.textContent = "答对了。";
+    elements.challengeFeedback.textContent = `答对了。释义：${item.meaning || "待补充"}`;
     playChallengeAudio(item, () => {
         challengeIndex += 1;
         if (challengeIndex < challengeWords.length) showChallenge();
