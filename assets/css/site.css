@@ -176,6 +176,13 @@ button.previous-word-button {
 .correct { color: var(--green) !important; }
 .wrong { color: var(--red) !important; }
 
+#wordList article h2 { margin-top: 0; }
+.wordlist-audio-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+#wordList details { margin-top: 14px; border-top: 1px dashed var(--line); padding-top: 12px; }
+#wordList summary { cursor: pointer; color: var(--blue); font-weight: 800; }
+.wordlist-example-choice { margin-top: 12px; padding: 8px 14px; border-left: 4px solid var(--yellow); background: var(--paper); }
+.wordlist-example-choice p { margin: 4px 0; }
+
 @media (max-width: 620px) {
   body { border: 0; }
   fieldset label, fieldset select { display: block; width: 100%; }
