@@ -2,6 +2,8 @@ import argparse
 import asyncio
 import json
 import os
+import ast
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -102,12 +104,66 @@ async def generate_missing_sentences(root: Path, limit: int | None):
     print(f"Prepared {len(records)} sentence recordings for {len(targets)} words.")
 
 
+async def generate_pronunciation_inventory(root: Path):
+    source = (root / "assets" / "js" / "pronunciation.js").read_text(encoding="utf-8")
+    audio_dir = root / "audio"
+    review_path = root / "data" / "audio-review.json"
+    initials_match = re.search(r"const initials=(\[.*?\]);\s*const finals", source, re.S)
+    if not initials_match:
+        raise RuntimeError("Could not read pronunciation initials.")
+    initials = ast.literal_eval(initials_match.group(1))
+    finals = re.findall(r"([a-z]+):\['([^']+)','([^']+)'\]", source)
+    targets = []
+    for item in initials:
+        if len(item) == 4:
+            symbol, word, jyutping, _ = item
+        elif item[0] == "kw":
+            symbol, word, jyutping = "kw", "誇", "kwaa1"
+        else:
+            raise RuntimeError(f"Incomplete initial entry: {item[0]}")
+        key = "zero" if symbol == "Ø" else symbol
+        targets.append((f"pron-initial-{key}.mp3", word, jyutping, "initial"))
+    for final, word, jyutping in finals:
+        targets.append((f"pron-final-{final}.mp3", word, jyutping, "final"))
+
+    semaphore = asyncio.Semaphore(2)
+    tasks = []
+    for filename, text, _, _ in targets:
+        destination = audio_dir / filename
+        if not destination.exists():
+            tasks.append(generate_one(text, VOICES["female"], destination, semaphore))
+    if tasks:
+        await asyncio.gather(*tasks)
+
+    review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else []
+    filenames = {filename for filename, _, _, _ in targets}
+    review = [record for record in review if record.get("file") not in filenames]
+    timestamp = datetime.now(timezone.utc).isoformat()
+    review.extend({
+        "kind": kind,
+        "gender": "female",
+        "file": filename,
+        "text": text,
+        "targetJyutping": jyutping,
+        "voice": VOICES["female"],
+        "status": "generated_unreviewed",
+        "generatedAt": timestamp,
+    } for filename, text, jyutping, kind in targets)
+    review_path.write_text(json.dumps(review, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Prepared {len(targets)} pronunciation recordings.")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default=".")
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--inventory", action="store_true")
     args = parser.parse_args()
-    asyncio.run(generate_missing_sentences(Path(args.root).resolve(), args.limit))
+    root = Path(args.root).resolve()
+    if args.inventory:
+        asyncio.run(generate_pronunciation_inventory(root))
+    else:
+        asyncio.run(generate_missing_sentences(root, args.limit))
 
 
 if __name__ == "__main__":

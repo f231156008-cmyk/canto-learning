@@ -4838,5 +4838,745 @@
     "voice": "zh-HK-WanLungNeural",
     "status": "legacy_unreviewed",
     "generatedAt": null
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-b.mp3",
+    "text": "巴",
+    "targetJyutping": "baa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-p.mp3",
+    "text": "怕",
+    "targetJyutping": "paa3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-m.mp3",
+    "text": "媽",
+    "targetJyutping": "maa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-f.mp3",
+    "text": "花",
+    "targetJyutping": "faa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-d.mp3",
+    "text": "打",
+    "targetJyutping": "daa2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-t.mp3",
+    "text": "他",
+    "targetJyutping": "taa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-n.mp3",
+    "text": "你",
+    "targetJyutping": "nei5",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-l.mp3",
+    "text": "啦",
+    "targetJyutping": "laa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-g.mp3",
+    "text": "家",
+    "targetJyutping": "gaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-k.mp3",
+    "text": "卡",
+    "targetJyutping": "kaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-ng.mp3",
+    "text": "牙",
+    "targetJyutping": "ngaa4",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-h.mp3",
+    "text": "蝦",
+    "targetJyutping": "haa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-gw.mp3",
+    "text": "瓜",
+    "targetJyutping": "gwaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-kw.mp3",
+    "text": "誇",
+    "targetJyutping": "kwaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-w.mp3",
+    "text": "蛙",
+    "targetJyutping": "waa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-z.mp3",
+    "text": "渣",
+    "targetJyutping": "zaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-c.mp3",
+    "text": "叉",
+    "targetJyutping": "caa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-s.mp3",
+    "text": "沙",
+    "targetJyutping": "saa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-j.mp3",
+    "text": "也",
+    "targetJyutping": "jaa5",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "initial",
+    "gender": "female",
+    "file": "pron-initial-zero.mp3",
+    "text": "呀",
+    "targetJyutping": "aa3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-i.mp3",
+    "text": "詩",
+    "targetJyutping": "si1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-iu.mp3",
+    "text": "笑",
+    "targetJyutping": "siu3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-im.mp3",
+    "text": "閃",
+    "targetJyutping": "sim2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-in.mp3",
+    "text": "先",
+    "targetJyutping": "sin1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ing.mp3",
+    "text": "星",
+    "targetJyutping": "sing1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ip.mp3",
+    "text": "攝",
+    "targetJyutping": "sip3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-it.mp3",
+    "text": "熱",
+    "targetJyutping": "jit6",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ik.mp3",
+    "text": "識",
+    "targetJyutping": "sik1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-yu.mp3",
+    "text": "書",
+    "targetJyutping": "syu1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-yun.mp3",
+    "text": "船",
+    "targetJyutping": "syun4",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-yut.mp3",
+    "text": "雪",
+    "targetJyutping": "syut3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-u.mp3",
+    "text": "夫",
+    "targetJyutping": "fu1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ui.mp3",
+    "text": "杯",
+    "targetJyutping": "bui1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-un.mp3",
+    "text": "搬",
+    "targetJyutping": "bun1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ung.mp3",
+    "text": "東",
+    "targetJyutping": "dung1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ut.mp3",
+    "text": "活",
+    "targetJyutping": "wut6",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-uk.mp3",
+    "text": "屋",
+    "targetJyutping": "uk1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-e.mp3",
+    "text": "啡",
+    "targetJyutping": "fe1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ei.mp3",
+    "text": "四",
+    "targetJyutping": "sei3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-eng.mp3",
+    "text": "靚",
+    "targetJyutping": "leng3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ek.mp3",
+    "text": "叻",
+    "targetJyutping": "lek1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-eoi.mp3",
+    "text": "水",
+    "targetJyutping": "seoi2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-eon.mp3",
+    "text": "春",
+    "targetJyutping": "ceon1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-eot.mp3",
+    "text": "出",
+    "targetJyutping": "ceot1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-oe.mp3",
+    "text": "靴",
+    "targetJyutping": "hoe1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-oeng.mp3",
+    "text": "香",
+    "targetJyutping": "hoeng1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-oek.mp3",
+    "text": "腳",
+    "targetJyutping": "goek3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-o.mp3",
+    "text": "波",
+    "targetJyutping": "bo1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-oi.mp3",
+    "text": "開",
+    "targetJyutping": "hoi1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ou.mp3",
+    "text": "高",
+    "targetJyutping": "gou1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-on.mp3",
+    "text": "乾",
+    "targetJyutping": "gon1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ong.mp3",
+    "text": "講",
+    "targetJyutping": "gong2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ot.mp3",
+    "text": "渴",
+    "targetJyutping": "hot3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ok.mp3",
+    "text": "學",
+    "targetJyutping": "hok6",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-a.mp3",
+    "text": "新",
+    "targetJyutping": "san1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ai.mp3",
+    "text": "仔",
+    "targetJyutping": "zai2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-au.mp3",
+    "text": "手",
+    "targetJyutping": "sau2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-am.mp3",
+    "text": "心",
+    "targetJyutping": "sam1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-an.mp3",
+    "text": "新",
+    "targetJyutping": "san1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ang.mp3",
+    "text": "等",
+    "targetJyutping": "dang2",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ap.mp3",
+    "text": "十",
+    "targetJyutping": "sap6",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-at.mp3",
+    "text": "七",
+    "targetJyutping": "cat1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ak.mp3",
+    "text": "北",
+    "targetJyutping": "bak1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aa.mp3",
+    "text": "家",
+    "targetJyutping": "gaa1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aai.mp3",
+    "text": "街",
+    "targetJyutping": "gaai1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aau.mp3",
+    "text": "教",
+    "targetJyutping": "gaau3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aam.mp3",
+    "text": "三",
+    "targetJyutping": "saam1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aan.mp3",
+    "text": "山",
+    "targetJyutping": "saan1",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aang.mp3",
+    "text": "硬",
+    "targetJyutping": "ngaang6",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aap.mp3",
+    "text": "鴨",
+    "targetJyutping": "aap3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aat.mp3",
+    "text": "八",
+    "targetJyutping": "baat3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-aak.mp3",
+    "text": "百",
+    "targetJyutping": "baak3",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-m.mp3",
+    "text": "唔",
+    "targetJyutping": "m4",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
+  },
+  {
+    "kind": "final",
+    "gender": "female",
+    "file": "pron-final-ng.mp3",
+    "text": "吳",
+    "targetJyutping": "ng4",
+    "voice": "zh-HK-HiuGaaiNeural",
+    "status": "generated_unreviewed",
+    "generatedAt": "2026-08-28T10:46:14.929270+00:00"
   }
 ]
