@@ -22,6 +22,7 @@ create table public.words (
   level text not null,
   meaning_zh text,
   meaning_en text,
+  pronunciation_note text,
   audio_female text,
   audio_male text,
   is_published boolean not null default true,
@@ -111,4 +112,3 @@ create policy "Users read own attempts" on public.quiz_attempts
   for select using (auth.uid() = user_id);
 create policy "Users create own attempts" on public.quiz_attempts
   for insert with check (auth.uid() = user_id);
-

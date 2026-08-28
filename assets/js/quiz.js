@@ -596,7 +596,11 @@ function showToneMarkQuestion(retry = false) {
     toneMarkQuestion = pool[Math.floor(Math.random() * pool.length)];
     toneMarkAnswered = false;
     document.getElementById("toneMarkWord").textContent = toneMarkQuestion.word;
-    document.getElementById("toneMarkClue").textContent = "";
+    document.getElementById("toneMarkClue").textContent = [
+        toneMarkQuestion.meaning ? `本题词义：${toneMarkQuestion.meaning}` : "",
+        toneMarkQuestion.example ? `例句：${toneMarkQuestion.example}` : "",
+        toneMarkQuestion.pronunciationNote || ""
+    ].filter(Boolean).join("\n");
     document.getElementById("toneMarkInputs").innerHTML = toneParts(toneMarkQuestion.jyutping).map((part, i) => `<label class="mark">${part.base}<select data-tone-mark="${i}"><option value="">声调</option>${[1,2,3,4,5,6].map(n => `<option>${n}</option>`).join("")}</select></label>`).join("");
     document.getElementById("toneMarkResult").textContent = "";
     document.getElementById("toneMarkSaveStatus").textContent = "";
@@ -635,11 +639,13 @@ async function checkToneMarkAnswer() {
     }).join("\n");
     const meaning = toneMarkQuestion.meaning ? `词义：${toneMarkQuestion.meaning}` : "";
     const example = toneMarkQuestion.example ? `例句：${toneMarkQuestion.example}` : "";
+    const pronunciationNote = toneMarkQuestion.pronunciationNote || "";
     document.getElementById("toneMarkResult").textContent = [
         correct ? "✓ 正确" : `✗ 正确答案：${toneMarkQuestion.jyutping}`,
         explanation,
         meaning,
-        example
+        example,
+        pronunciationNote
     ].filter(Boolean).join("\n");
     playToneMarkAudio();
     document.getElementById("toneMarkReplay").hidden = false;
