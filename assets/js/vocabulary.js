@@ -3,7 +3,7 @@ let allWords = [], groups = [], words = [], studyIndex = 0, challengeIndex = 0, 
 let remoteProgress = new Map();
 
 const elements = {};
-["progress", "word", "jyutping", "example", "voiceSelect", "audioButton", "wordAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
+["progress", "word", "jyutping", "example", "voiceSelect", "audioButton", "wordAudio", "sentenceAudioButton", "sentenceAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
 
 const savedVoice = localStorage.getItem("cantoVoice");
 if (savedVoice === "female" || savedVoice === "male") elements.voiceSelect.value = savedVoice;
@@ -95,6 +95,10 @@ async function showStudyWord() {
     elements.previousButton.disabled = studyIndex === 0;
     elements.continueButton.textContent = studyIndex === words.length - 1 ? "开始考察 →" : "下一词 →";
     const audioPath = `audio/${item.audio[elements.voiceSelect.value]}`;
+    const sentenceFile = item.sentenceAudio?.[elements.voiceSelect.value];
+    elements.sentenceAudioButton.disabled = !sentenceFile;
+    elements.sentenceAudioButton.textContent = sentenceFile ? "🔊 播放例句" : "例句音频待补充";
+    if (sentenceFile) elements.sentenceAudio.src = `audio/${sentenceFile}`;
     elements.wordAudio.src = audioPath;
     elements.audioButton.disabled = true;
     if (item.audioStatus === "needs_review") {
@@ -211,6 +215,7 @@ function shuffle(items) {
 elements.previousButton.addEventListener("click", () => { if (studyIndex > 0) { studyIndex -= 1; showStudyWord(); } });
 elements.continueButton.addEventListener("click", () => { if (studyIndex < words.length - 1) { studyIndex += 1; showStudyWord(); } else beginChallenge(); });
 elements.audioButton.addEventListener("click", () => { elements.wordAudio.currentTime = 0; elements.wordAudio.play().catch(() => { elements.message.textContent = "音频无法播放，请稍后重试。"; }); });
+elements.sentenceAudioButton.addEventListener("click", () => { elements.sentenceAudio.currentTime = 0; elements.sentenceAudio.play().catch(() => { elements.message.textContent = "例句音频无法播放，请稍后重试。"; }); });
 elements.voiceSelect.addEventListener("change", () => { localStorage.setItem("cantoVoice", elements.voiceSelect.value); showStudyWord(); });
 elements.categoryFilter.addEventListener("change", buildGroups);
 elements.levelFilter.addEventListener("change", buildGroups);

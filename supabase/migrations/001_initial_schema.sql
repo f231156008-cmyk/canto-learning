@@ -40,7 +40,9 @@ create table public.examples (
   jyutping text,
   translation_zh text,
   translation_en text,
-  audio_path text,
+  audio_female text,
+  audio_male text,
+  audio_status text not null default 'unreviewed' check (audio_status in ('unreviewed', 'verified', 'needs_review')),
   is_hong_kong_local boolean not null default true,
   sort_order integer not null default 0,
   created_at timestamptz not null default now()

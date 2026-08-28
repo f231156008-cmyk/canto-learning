@@ -14,6 +14,10 @@
     "audio": {
       "female": "001-female.mp3",
       "male": "001-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "001-sentence-female.mp3",
+      "male": "001-sentence-male.mp3"
     }
   },
   {
@@ -31,6 +35,10 @@
     "audio": {
       "female": "002-female.mp3",
       "male": "002-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "002-sentence-female.mp3",
+      "male": "002-sentence-male.mp3"
     }
   },
   {
@@ -48,6 +56,10 @@
     "audio": {
       "female": "003-female.mp3",
       "male": "003-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "003-sentence-female.mp3",
+      "male": "003-sentence-male.mp3"
     }
   },
   {
@@ -65,6 +77,10 @@
     "audio": {
       "female": "004-female.mp3",
       "male": "004-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "004-sentence-female.mp3",
+      "male": "004-sentence-male.mp3"
     }
   },
   {
@@ -82,6 +98,10 @@
     "audio": {
       "female": "005-female.mp3",
       "male": "005-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "005-sentence-female.mp3",
+      "male": "005-sentence-male.mp3"
     }
   },
   {
@@ -99,6 +119,10 @@
     "audio": {
       "female": "006-female.mp3",
       "male": "006-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "006-sentence-female.mp3",
+      "male": "006-sentence-male.mp3"
     }
   },
   {
@@ -116,6 +140,10 @@
     "audio": {
       "female": "007-female.mp3",
       "male": "007-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "007-sentence-female.mp3",
+      "male": "007-sentence-male.mp3"
     }
   },
   {
@@ -133,6 +161,10 @@
     "audio": {
       "female": "008-female.mp3",
       "male": "008-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "008-sentence-female.mp3",
+      "male": "008-sentence-male.mp3"
     }
   },
   {
@@ -150,6 +182,10 @@
     "audio": {
       "female": "009-female.mp3",
       "male": "009-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "009-sentence-female.mp3",
+      "male": "009-sentence-male.mp3"
     }
   },
   {
@@ -167,6 +203,10 @@
     "audio": {
       "female": "010-female.mp3",
       "male": "010-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "010-sentence-female.mp3",
+      "male": "010-sentence-male.mp3"
     }
   },
   {
@@ -184,6 +224,10 @@
     "audio": {
       "female": "011-female.mp3",
       "male": "011-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "011-sentence-female.mp3",
+      "male": "011-sentence-male.mp3"
     }
   },
   {
@@ -201,6 +245,10 @@
     "audio": {
       "female": "012-female.mp3",
       "male": "012-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "012-sentence-female.mp3",
+      "male": "012-sentence-male.mp3"
     }
   },
   {
@@ -218,6 +266,10 @@
     "audio": {
       "female": "013-female.mp3",
       "male": "013-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "013-sentence-female.mp3",
+      "male": "013-sentence-male.mp3"
     }
   },
   {
@@ -235,6 +287,10 @@
     "audio": {
       "female": "014-female.mp3",
       "male": "014-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "014-sentence-female.mp3",
+      "male": "014-sentence-male.mp3"
     }
   },
   {
@@ -252,6 +308,10 @@
     "audio": {
       "female": "015-female.mp3",
       "male": "015-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "015-sentence-female.mp3",
+      "male": "015-sentence-male.mp3"
     }
   },
   {
@@ -269,6 +329,10 @@
     "audio": {
       "female": "016-female.mp3",
       "male": "016-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "016-sentence-female.mp3",
+      "male": "016-sentence-male.mp3"
     }
   },
   {
@@ -286,6 +350,10 @@
     "audio": {
       "female": "017-female.mp3",
       "male": "017-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "017-sentence-female.mp3",
+      "male": "017-sentence-male.mp3"
     }
   },
   {
@@ -303,6 +371,10 @@
     "audio": {
       "female": "018-female.mp3",
       "male": "018-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "018-sentence-female.mp3",
+      "male": "018-sentence-male.mp3"
     }
   },
   {
@@ -320,6 +392,10 @@
     "audio": {
       "female": "019-female.mp3",
       "male": "019-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "019-sentence-female.mp3",
+      "male": "019-sentence-male.mp3"
     }
   },
   {
@@ -337,6 +413,10 @@
     "audio": {
       "female": "020-female.mp3",
       "male": "020-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "020-sentence-female.mp3",
+      "male": "020-sentence-male.mp3"
     }
   },
   {
@@ -354,6 +434,10 @@
     "audio": {
       "female": "021-female.mp3",
       "male": "021-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "021-sentence-female.mp3",
+      "male": "021-sentence-male.mp3"
     }
   },
   {
@@ -371,6 +455,10 @@
     "audio": {
       "female": "022-female.mp3",
       "male": "022-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "022-sentence-female.mp3",
+      "male": "022-sentence-male.mp3"
     }
   },
   {
@@ -388,6 +476,10 @@
     "audio": {
       "female": "023-female.mp3",
       "male": "023-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "023-sentence-female.mp3",
+      "male": "023-sentence-male.mp3"
     }
   },
   {
@@ -405,6 +497,10 @@
     "audio": {
       "female": "024-female.mp3",
       "male": "024-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "024-sentence-female.mp3",
+      "male": "024-sentence-male.mp3"
     }
   },
   {
@@ -422,6 +518,10 @@
     "audio": {
       "female": "025-female.mp3",
       "male": "025-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "025-sentence-female.mp3",
+      "male": "025-sentence-male.mp3"
     }
   },
   {
@@ -439,6 +539,10 @@
     "audio": {
       "female": "026-female.mp3",
       "male": "026-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "026-sentence-female.mp3",
+      "male": "026-sentence-male.mp3"
     }
   },
   {
@@ -456,6 +560,10 @@
     "audio": {
       "female": "027-female.mp3",
       "male": "027-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "027-sentence-female.mp3",
+      "male": "027-sentence-male.mp3"
     }
   },
   {
@@ -473,6 +581,10 @@
     "audio": {
       "female": "028-female.mp3",
       "male": "028-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "028-sentence-female.mp3",
+      "male": "028-sentence-male.mp3"
     }
   },
   {
@@ -490,6 +602,10 @@
     "audio": {
       "female": "029-female.mp3",
       "male": "029-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "029-sentence-female.mp3",
+      "male": "029-sentence-male.mp3"
     }
   },
   {
@@ -507,6 +623,10 @@
     "audio": {
       "female": "030-female.mp3",
       "male": "030-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "030-sentence-female.mp3",
+      "male": "030-sentence-male.mp3"
     }
   },
   {
@@ -524,6 +644,10 @@
     "audio": {
       "female": "031-female.mp3",
       "male": "031-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "031-sentence-female.mp3",
+      "male": "031-sentence-male.mp3"
     }
   },
   {
@@ -541,6 +665,10 @@
     "audio": {
       "female": "032-female.mp3",
       "male": "032-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "032-sentence-female.mp3",
+      "male": "032-sentence-male.mp3"
     }
   },
   {
@@ -558,6 +686,10 @@
     "audio": {
       "female": "033-female.mp3",
       "male": "033-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "033-sentence-female.mp3",
+      "male": "033-sentence-male.mp3"
     }
   },
   {
@@ -575,6 +707,10 @@
     "audio": {
       "female": "034-female.mp3",
       "male": "034-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "034-sentence-female.mp3",
+      "male": "034-sentence-male.mp3"
     }
   },
   {
@@ -592,6 +728,10 @@
     "audio": {
       "female": "035-female.mp3",
       "male": "035-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "035-sentence-female.mp3",
+      "male": "035-sentence-male.mp3"
     }
   },
   {
@@ -609,6 +749,10 @@
     "audio": {
       "female": "036-female.mp3",
       "male": "036-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "036-sentence-female.mp3",
+      "male": "036-sentence-male.mp3"
     }
   },
   {
@@ -626,6 +770,10 @@
     "audio": {
       "female": "037-female.mp3",
       "male": "037-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "037-sentence-female.mp3",
+      "male": "037-sentence-male.mp3"
     }
   },
   {
@@ -643,6 +791,10 @@
     "audio": {
       "female": "038-female.mp3",
       "male": "038-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "038-sentence-female.mp3",
+      "male": "038-sentence-male.mp3"
     }
   },
   {
@@ -660,6 +812,10 @@
     "audio": {
       "female": "039-female.mp3",
       "male": "039-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "039-sentence-female.mp3",
+      "male": "039-sentence-male.mp3"
     }
   },
   {
@@ -677,6 +833,10 @@
     "audio": {
       "female": "040-female.mp3",
       "male": "040-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "040-sentence-female.mp3",
+      "male": "040-sentence-male.mp3"
     }
   },
   {
@@ -694,6 +854,10 @@
     "audio": {
       "female": "041-female.mp3",
       "male": "041-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "041-sentence-female.mp3",
+      "male": "041-sentence-male.mp3"
     }
   },
   {
@@ -711,6 +875,10 @@
     "audio": {
       "female": "042-female.mp3",
       "male": "042-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "042-sentence-female.mp3",
+      "male": "042-sentence-male.mp3"
     }
   },
   {
@@ -728,6 +896,10 @@
     "audio": {
       "female": "043-female.mp3",
       "male": "043-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "043-sentence-female.mp3",
+      "male": "043-sentence-male.mp3"
     }
   },
   {
@@ -745,6 +917,10 @@
     "audio": {
       "female": "044-female.mp3",
       "male": "044-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "044-sentence-female.mp3",
+      "male": "044-sentence-male.mp3"
     }
   },
   {
@@ -762,6 +938,10 @@
     "audio": {
       "female": "045-female.mp3",
       "male": "045-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "045-sentence-female.mp3",
+      "male": "045-sentence-male.mp3"
     }
   },
   {
@@ -779,6 +959,10 @@
     "audio": {
       "female": "046-female.mp3",
       "male": "046-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "046-sentence-female.mp3",
+      "male": "046-sentence-male.mp3"
     }
   },
   {
@@ -796,6 +980,10 @@
     "audio": {
       "female": "047-female.mp3",
       "male": "047-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "047-sentence-female.mp3",
+      "male": "047-sentence-male.mp3"
     }
   },
   {
@@ -813,6 +1001,10 @@
     "audio": {
       "female": "048-female.mp3",
       "male": "048-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "048-sentence-female.mp3",
+      "male": "048-sentence-male.mp3"
     }
   },
   {
@@ -830,6 +1022,10 @@
     "audio": {
       "female": "049-female.mp3",
       "male": "049-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "049-sentence-female.mp3",
+      "male": "049-sentence-male.mp3"
     }
   },
   {
@@ -847,6 +1043,10 @@
     "audio": {
       "female": "050-female.mp3",
       "male": "050-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "050-sentence-female.mp3",
+      "male": "050-sentence-male.mp3"
     }
   },
   {
@@ -864,6 +1064,10 @@
     "audio": {
       "female": "051-female.mp3",
       "male": "051-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "051-sentence-female.mp3",
+      "male": "051-sentence-male.mp3"
     }
   },
   {
@@ -881,6 +1085,10 @@
     "audio": {
       "female": "052-female.mp3",
       "male": "052-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "052-sentence-female.mp3",
+      "male": "052-sentence-male.mp3"
     }
   },
   {
@@ -898,6 +1106,10 @@
     "audio": {
       "female": "053-female.mp3",
       "male": "053-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "053-sentence-female.mp3",
+      "male": "053-sentence-male.mp3"
     }
   },
   {
@@ -915,6 +1127,10 @@
     "audio": {
       "female": "054-female.mp3",
       "male": "054-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "054-sentence-female.mp3",
+      "male": "054-sentence-male.mp3"
     }
   },
   {
@@ -932,6 +1148,10 @@
     "audio": {
       "female": "055-female.mp3",
       "male": "055-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "055-sentence-female.mp3",
+      "male": "055-sentence-male.mp3"
     }
   },
   {
@@ -949,6 +1169,10 @@
     "audio": {
       "female": "056-female.mp3",
       "male": "056-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "056-sentence-female.mp3",
+      "male": "056-sentence-male.mp3"
     }
   },
   {
@@ -966,6 +1190,10 @@
     "audio": {
       "female": "057-female.mp3",
       "male": "057-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "057-sentence-female.mp3",
+      "male": "057-sentence-male.mp3"
     }
   },
   {
@@ -983,6 +1211,10 @@
     "audio": {
       "female": "058-female.mp3",
       "male": "058-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "058-sentence-female.mp3",
+      "male": "058-sentence-male.mp3"
     }
   },
   {
@@ -1000,6 +1232,10 @@
     "audio": {
       "female": "059-female.mp3",
       "male": "059-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "059-sentence-female.mp3",
+      "male": "059-sentence-male.mp3"
     }
   },
   {
@@ -1017,6 +1253,10 @@
     "audio": {
       "female": "060-female.mp3",
       "male": "060-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "060-sentence-female.mp3",
+      "male": "060-sentence-male.mp3"
     }
   },
   {
@@ -1034,6 +1274,10 @@
     "audio": {
       "female": "061-female.mp3",
       "male": "061-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "061-sentence-female.mp3",
+      "male": "061-sentence-male.mp3"
     }
   },
   {
@@ -1051,6 +1295,10 @@
     "audio": {
       "female": "062-female.mp3",
       "male": "062-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "062-sentence-female.mp3",
+      "male": "062-sentence-male.mp3"
     }
   },
   {
@@ -1068,6 +1316,10 @@
     "audio": {
       "female": "063-female.mp3",
       "male": "063-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "063-sentence-female.mp3",
+      "male": "063-sentence-male.mp3"
     }
   },
   {
@@ -1085,6 +1337,10 @@
     "audio": {
       "female": "064-female.mp3",
       "male": "064-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "064-sentence-female.mp3",
+      "male": "064-sentence-male.mp3"
     }
   },
   {
@@ -1102,6 +1358,10 @@
     "audio": {
       "female": "065-female.mp3",
       "male": "065-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "065-sentence-female.mp3",
+      "male": "065-sentence-male.mp3"
     }
   },
   {
@@ -1119,6 +1379,10 @@
     "audio": {
       "female": "066-female.mp3",
       "male": "066-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "066-sentence-female.mp3",
+      "male": "066-sentence-male.mp3"
     }
   },
   {
@@ -1136,6 +1400,10 @@
     "audio": {
       "female": "067-female.mp3",
       "male": "067-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "067-sentence-female.mp3",
+      "male": "067-sentence-male.mp3"
     }
   },
   {
@@ -1153,6 +1421,10 @@
     "audio": {
       "female": "068-female.mp3",
       "male": "068-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "068-sentence-female.mp3",
+      "male": "068-sentence-male.mp3"
     }
   },
   {
@@ -1170,6 +1442,10 @@
     "audio": {
       "female": "069-female.mp3",
       "male": "069-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "069-sentence-female.mp3",
+      "male": "069-sentence-male.mp3"
     }
   },
   {
@@ -1187,6 +1463,10 @@
     "audio": {
       "female": "070-female.mp3",
       "male": "070-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "070-sentence-female.mp3",
+      "male": "070-sentence-male.mp3"
     }
   },
   {
@@ -1204,6 +1484,10 @@
     "audio": {
       "female": "071-female.mp3",
       "male": "071-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "071-sentence-female.mp3",
+      "male": "071-sentence-male.mp3"
     }
   },
   {
@@ -1221,6 +1505,10 @@
     "audio": {
       "female": "072-female.mp3",
       "male": "072-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "072-sentence-female.mp3",
+      "male": "072-sentence-male.mp3"
     }
   },
   {
@@ -1238,6 +1526,10 @@
     "audio": {
       "female": "073-female.mp3",
       "male": "073-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "073-sentence-female.mp3",
+      "male": "073-sentence-male.mp3"
     }
   },
   {
@@ -1255,6 +1547,10 @@
     "audio": {
       "female": "074-female.mp3",
       "male": "074-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "074-sentence-female.mp3",
+      "male": "074-sentence-male.mp3"
     }
   },
   {
@@ -1272,6 +1568,10 @@
     "audio": {
       "female": "075-female.mp3",
       "male": "075-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "075-sentence-female.mp3",
+      "male": "075-sentence-male.mp3"
     }
   },
   {
@@ -1289,6 +1589,10 @@
     "audio": {
       "female": "076-female.mp3",
       "male": "076-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "076-sentence-female.mp3",
+      "male": "076-sentence-male.mp3"
     }
   },
   {
@@ -1306,6 +1610,10 @@
     "audio": {
       "female": "077-female.mp3",
       "male": "077-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "077-sentence-female.mp3",
+      "male": "077-sentence-male.mp3"
     }
   },
   {
@@ -1323,6 +1631,10 @@
     "audio": {
       "female": "078-female.mp3",
       "male": "078-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "078-sentence-female.mp3",
+      "male": "078-sentence-male.mp3"
     }
   },
   {
@@ -1340,6 +1652,10 @@
     "audio": {
       "female": "079-female.mp3",
       "male": "079-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "079-sentence-female.mp3",
+      "male": "079-sentence-male.mp3"
     }
   },
   {
@@ -1357,6 +1673,10 @@
     "audio": {
       "female": "080-female.mp3",
       "male": "080-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "080-sentence-female.mp3",
+      "male": "080-sentence-male.mp3"
     }
   },
   {
@@ -1374,6 +1694,10 @@
     "audio": {
       "female": "081-female.mp3",
       "male": "081-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "081-sentence-female.mp3",
+      "male": "081-sentence-male.mp3"
     }
   },
   {
@@ -1391,6 +1715,10 @@
     "audio": {
       "female": "082-female.mp3",
       "male": "082-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "082-sentence-female.mp3",
+      "male": "082-sentence-male.mp3"
     }
   },
   {
@@ -1408,6 +1736,10 @@
     "audio": {
       "female": "083-female.mp3",
       "male": "083-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "083-sentence-female.mp3",
+      "male": "083-sentence-male.mp3"
     }
   },
   {
@@ -1425,6 +1757,10 @@
     "audio": {
       "female": "084-female.mp3",
       "male": "084-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "084-sentence-female.mp3",
+      "male": "084-sentence-male.mp3"
     }
   },
   {
@@ -1442,6 +1778,10 @@
     "audio": {
       "female": "085-female.mp3",
       "male": "085-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "085-sentence-female.mp3",
+      "male": "085-sentence-male.mp3"
     }
   },
   {
@@ -1459,6 +1799,10 @@
     "audio": {
       "female": "086-female.mp3",
       "male": "086-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "086-sentence-female.mp3",
+      "male": "086-sentence-male.mp3"
     }
   },
   {
@@ -1476,6 +1820,10 @@
     "audio": {
       "female": "087-female.mp3",
       "male": "087-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "087-sentence-female.mp3",
+      "male": "087-sentence-male.mp3"
     }
   },
   {
@@ -1493,6 +1841,10 @@
     "audio": {
       "female": "088-female.mp3",
       "male": "088-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "088-sentence-female.mp3",
+      "male": "088-sentence-male.mp3"
     }
   },
   {
@@ -1510,6 +1862,10 @@
     "audio": {
       "female": "089-female.mp3",
       "male": "089-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "089-sentence-female.mp3",
+      "male": "089-sentence-male.mp3"
     }
   },
   {
@@ -1527,6 +1883,10 @@
     "audio": {
       "female": "090-female.mp3",
       "male": "090-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "090-sentence-female.mp3",
+      "male": "090-sentence-male.mp3"
     }
   },
   {
@@ -1544,6 +1904,10 @@
     "audio": {
       "female": "091-female.mp3",
       "male": "091-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "091-sentence-female.mp3",
+      "male": "091-sentence-male.mp3"
     }
   },
   {
@@ -1561,6 +1925,10 @@
     "audio": {
       "female": "092-female.mp3",
       "male": "092-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "092-sentence-female.mp3",
+      "male": "092-sentence-male.mp3"
     }
   },
   {
@@ -1578,6 +1946,10 @@
     "audio": {
       "female": "093-female.mp3",
       "male": "093-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "093-sentence-female.mp3",
+      "male": "093-sentence-male.mp3"
     }
   },
   {
@@ -1595,6 +1967,10 @@
     "audio": {
       "female": "094-female.mp3",
       "male": "094-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "094-sentence-female.mp3",
+      "male": "094-sentence-male.mp3"
     }
   },
   {
@@ -1612,6 +1988,10 @@
     "audio": {
       "female": "095-female.mp3",
       "male": "095-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "095-sentence-female.mp3",
+      "male": "095-sentence-male.mp3"
     }
   },
   {
@@ -1629,6 +2009,10 @@
     "audio": {
       "female": "096-female.mp3",
       "male": "096-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "096-sentence-female.mp3",
+      "male": "096-sentence-male.mp3"
     }
   },
   {
@@ -1646,6 +2030,10 @@
     "audio": {
       "female": "097-female.mp3",
       "male": "097-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "097-sentence-female.mp3",
+      "male": "097-sentence-male.mp3"
     }
   },
   {
@@ -1663,6 +2051,10 @@
     "audio": {
       "female": "098-female.mp3",
       "male": "098-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "098-sentence-female.mp3",
+      "male": "098-sentence-male.mp3"
     }
   },
   {
@@ -1680,6 +2072,10 @@
     "audio": {
       "female": "099-female.mp3",
       "male": "099-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "099-sentence-female.mp3",
+      "male": "099-sentence-male.mp3"
     }
   },
   {
@@ -1697,6 +2093,10 @@
     "audio": {
       "female": "100-female.mp3",
       "male": "100-male.mp3"
+    },
+    "sentenceAudio": {
+      "female": "100-sentence-female.mp3",
+      "male": "100-sentence-male.mp3"
     }
   },
   {
