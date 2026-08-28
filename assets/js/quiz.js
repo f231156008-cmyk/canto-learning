@@ -568,8 +568,18 @@ document
 loadWords();
 
 let toneMarkQuestion = null;
+let toneMarkAnswered = false;
 let toneMarkStats = JSON.parse(localStorage.getItem("markStats") || '{"right":0,"total":0,"bad":[]}');
 const toneMarkAudio = new Audio();
+
+const toneNames = {
+    1: "高平",
+    2: "高升",
+    3: "中平",
+    4: "低降",
+    5: "低升",
+    6: "低平"
+};
 
 function toneParts(jyutping) {
     return jyutping.split(/\s+/).map(syllable => ({ base: syllable.slice(0, -1), tone: Number(syllable.at(-1)) }));
@@ -584,23 +594,34 @@ function showToneMarkQuestion(retry = false) {
     const retryPool = retry && toneMarkStats.bad.length ? words.filter(w => toneMarkStats.bad.includes(w.id)) : [];
     const pool = retryPool.length ? retryPool : words;
     toneMarkQuestion = pool[Math.floor(Math.random() * pool.length)];
+    toneMarkAnswered = false;
     document.getElementById("toneMarkWord").textContent = toneMarkQuestion.word;
-    document.getElementById("toneMarkClue").textContent = "";
+    document.getElementById("toneMarkClue").textContent = [
+        toneMarkQuestion.meaning ? `本题词义：${toneMarkQuestion.meaning}` : "",
+        toneMarkQuestion.example ? `例句：${toneMarkQuestion.example}` : "",
+        toneMarkQuestion.pronunciationNote || ""
+    ].filter(Boolean).join("\n");
     document.getElementById("toneMarkInputs").innerHTML = toneParts(toneMarkQuestion.jyutping).map((part, i) => `<label class="mark">${part.base}<select data-tone-mark="${i}"><option value="">声调</option>${[1,2,3,4,5,6].map(n => `<option>${n}</option>`).join("")}</select></label>`).join("");
     document.getElementById("toneMarkResult").textContent = "";
     document.getElementById("toneMarkSaveStatus").textContent = "";
     document.getElementById("toneMarkReplay").hidden = true;
+    document.getElementById("checkToneMark").disabled = false;
     toneMarkAudio.pause();
     showToneMarkStats();
 }
 
 async function checkToneMarkAnswer() {
+    if (!toneMarkQuestion || toneMarkAnswered) return;
     const selected = [...document.querySelectorAll("[data-tone-mark]")].map(x => Number(x.value));
-    const wanted = toneParts(toneMarkQuestion.jyutping).map(x => x.tone);
+    const parts = toneParts(toneMarkQuestion.jyutping);
+    const wanted = parts.map(x => x.tone);
     if (selected.some(x => !x)) {
         document.getElementById("toneMarkResult").textContent = "请先选完所有声调。";
         return;
     }
+    toneMarkAnswered = true;
+    document.getElementById("checkToneMark").disabled = true;
+    document.querySelectorAll("[data-tone-mark]").forEach(input => { input.disabled = true; });
     const correct = wanted.every((x, i) => x === selected[i]);
     toneMarkStats.total++;
     if (correct) {
@@ -610,7 +631,22 @@ async function checkToneMarkAnswer() {
         toneMarkStats.bad.push(toneMarkQuestion.id);
     }
     localStorage.setItem("markStats", JSON.stringify(toneMarkStats));
-    document.getElementById("toneMarkResult").textContent = `${correct ? "✓ 正确" : "✗ 正确答案"}：${toneMarkQuestion.jyutping}`;
+    const explanation = parts.map((part, index) => {
+        if (selected[index] === part.tone) {
+            return `${part.base}${part.tone}：答对，${part.tone} 声（${toneNames[part.tone]}）`;
+        }
+        return `${part.base}：你选 ${selected[index]} 声（${toneNames[selected[index]]}），正确是 ${part.tone} 声（${toneNames[part.tone]}）`;
+    }).join("\n");
+    const meaning = toneMarkQuestion.meaning ? `词义：${toneMarkQuestion.meaning}` : "";
+    const example = toneMarkQuestion.example ? `例句：${toneMarkQuestion.example}` : "";
+    const pronunciationNote = toneMarkQuestion.pronunciationNote || "";
+    document.getElementById("toneMarkResult").textContent = [
+        correct ? "✓ 正确" : `✗ 正确答案：${toneMarkQuestion.jyutping}`,
+        explanation,
+        meaning,
+        example,
+        pronunciationNote
+    ].filter(Boolean).join("\n");
     playToneMarkAudio();
     document.getElementById("toneMarkReplay").hidden = false;
     showToneMarkStats();
@@ -620,11 +656,18 @@ async function checkToneMarkAnswer() {
 
 function playToneMarkAudio() {
     if (!toneMarkQuestion || !toneMarkQuestion.audio) return;
-    toneMarkAudio.src = `audio/${toneMarkQuestion.audio[voiceSelect.value]}`;
+    const useSentenceAudio = toneMarkQuestion.audioStatus === "needs_review" && toneMarkQuestion.sentenceAudio?.[voiceSelect.value];
+    const audioFile = useSentenceAudio
+        ? toneMarkQuestion.sentenceAudio[voiceSelect.value]
+        : toneMarkQuestion.audio[voiceSelect.value];
+    toneMarkAudio.src = `audio/${audioFile}`;
     toneMarkAudio.currentTime = 0;
     toneMarkAudio.play().catch(() => {
         document.getElementById("toneMarkSaveStatus").textContent = "录音暂时无法播放。";
     });
+    if (useSentenceAudio) {
+        document.getElementById("toneMarkSaveStatus").textContent = "单字录音待校对；当前播放含目标词的例句。";
+    }
 }
 
 document.getElementById("checkToneMark").addEventListener("click", checkToneMarkAnswer);

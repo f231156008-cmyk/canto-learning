@@ -11,13 +11,6 @@
 <body>
     <h1>词汇闯关</h1>
 
-    <ol class="stage-map" aria-label="学习关卡">
-        <li class="active">选择路线</li>
-        <li>学习本组</li>
-        <li>系统考察</li>
-        <li>完成闯关</li>
-    </ol>
-
     <fieldset aria-label="学习路线">
         <label for="categoryFilter"><strong>主题</strong></label>
         <select id="categoryFilter">
@@ -40,6 +33,8 @@
 
     <p><strong>粤拼</strong>　<span id="jyutping"></span></p>
     <p><strong>例句</strong>　<span id="example"></span></p>
+    <button id="sentenceAudioButton" type="button">🔊 播放例句</button>
+    <audio id="sentenceAudio"></audio>
 
     <label for="voiceSelect"><strong>声音</strong></label>
     <select id="voiceSelect">

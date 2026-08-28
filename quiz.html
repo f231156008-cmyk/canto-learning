@@ -122,6 +122,8 @@
         }
 
         #toneMarkWord { font-size: 40px; font-weight: bold; }
+        #toneMarkClue { white-space: pre-line; line-height: 1.65; }
+        #toneMarkResult { white-space: pre-line; line-height: 1.75; }
         #toneMarkInputs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .mark { display: grid; gap: 6px; font-size: 22px; }
         .mark select { padding: 8px; font-size: 16px; }
@@ -165,8 +167,8 @@
     </fieldset>
 
     <nav id="modeSelector" class="mode-selector" aria-label="选择题型">
-        <button class="active" data-mode="tone">粤拼补声调</button>
-        <button data-mode="full">粤拼打字（不计声调）</button>
+        <button class="active" data-mode="tone">标音调</button>
+        <button data-mode="full">粤拼打字</button>
     </nav>
 
     <section id="fullMode" class="quiz-mode" hidden>

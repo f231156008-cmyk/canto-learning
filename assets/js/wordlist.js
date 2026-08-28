@@ -18,11 +18,22 @@ function difficultyName(value) {
 }
 
 function createLine(label, value) {
+    if (value === undefined || value === null || value === "") return null;
     const paragraph = document.createElement("p");
     const strong = document.createElement("strong");
     strong.textContent = `${label}：`;
     paragraph.append(strong, document.createTextNode(value));
     return paragraph;
+}
+
+function createAudioButton(label, file, kind) {
+    if (!file) return null;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = `🔊 ${label}`;
+    button.dataset.audioFile = file;
+    button.dataset.audioKind = kind;
+    return button;
 }
 
 function renderWords() {
@@ -41,19 +52,49 @@ function renderWords() {
         const article = document.createElement("article");
         const title = document.createElement("h2");
         title.textContent = word.word;
-        article.append(
+        const lines = [
             title,
             createLine("粤拼", word.jyutping),
+            createLine("普通话含义", word.meaning),
+            createLine("英语释义", word.english),
             createLine("主题", word.category),
             createLine("难度", word.level || difficultyName(word.difficulty)),
-            createLine("例句", word.example)
-        );
+            createLine("例句", word.example),
+            createLine("例句粤拼", word.sentenceJyutping),
+            createLine("例句普通话", word.translation),
+            createLine("例句英语", word.sentenceEnglish),
+            createLine("读音说明", word.pronunciationNote)
+        ].filter(Boolean);
+        article.append(...lines);
 
-        const playButton = document.createElement("button");
-        playButton.type = "button";
-        playButton.textContent = "🔊 播放发音";
-        playButton.dataset.wordId = String(word.id);
-        article.append(playButton, document.createElement("hr"));
+        const actions = document.createElement("div");
+        actions.className = "wordlist-audio-actions";
+        const voice = voiceSelect.value;
+        const audioButtons = [
+            createAudioButton("播放单词", word.audio?.[voice], "单词"),
+            createAudioButton("播放例句", word.sentenceAudio?.[voice], "例句")
+        ].filter(Boolean);
+        actions.append(...audioButtons);
+        article.append(actions);
+
+        if (Array.isArray(word.exampleChoices) && word.exampleChoices.length) {
+            const details = document.createElement("details");
+            const summary = document.createElement("summary");
+            summary.textContent = `更多例句（${word.exampleChoices.length}）`;
+            details.append(summary);
+            word.exampleChoices.forEach(choice => {
+                const example = document.createElement("div");
+                example.className = "wordlist-example-choice";
+                [
+                    createLine(choice.type || "例句", choice.example),
+                    createLine("粤拼", choice.sentenceJyutping),
+                    createLine("普通话", choice.translation),
+                    createLine("英语", choice.sentenceEnglish)
+                ].filter(Boolean).forEach(line => example.append(line));
+                details.append(example);
+            });
+            article.append(details);
+        }
         wordList.append(article);
     });
 }
@@ -82,14 +123,14 @@ categorySelect.addEventListener("change", renderWords);
 difficultySelect.addEventListener("change", renderWords);
 voiceSelect.addEventListener("change", function() {
     localStorage.setItem("cantoVoice", voiceSelect.value);
+    renderWords();
 });
 
 wordList.addEventListener("click", function(event) {
-    const button = event.target.closest("button[data-word-id]");
+    const button = event.target.closest("button[data-audio-file]");
     if (!button) return;
-    const word = words.find(item => String(item.id) === button.dataset.wordId);
-    if (!word) return;
-    wordAudio.src = `audio/${word.audio[voiceSelect.value]}`;
+    message.textContent = `正在播放${button.dataset.audioKind}。`;
+    wordAudio.src = `audio/${button.dataset.audioFile}`;
     wordAudio.currentTime = 0;
     wordAudio.play().catch(function() {
         message.textContent = "音频暂时无法播放，请稍后重试。";

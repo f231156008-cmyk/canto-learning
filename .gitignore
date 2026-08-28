@@ -1,2 +1,5 @@
 push.out.log
 push.err.log
+.tools/
+tools/_vendor/
+tools/__pycache__/

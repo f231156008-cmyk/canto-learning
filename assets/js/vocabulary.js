@@ -3,7 +3,7 @@ let allWords = [], groups = [], words = [], studyIndex = 0, challengeIndex = 0, 
 let remoteProgress = new Map();
 
 const elements = {};
-["progress", "word", "jyutping", "example", "voiceSelect", "audioButton", "wordAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
+["progress", "word", "jyutping", "example", "voiceSelect", "audioButton", "wordAudio", "sentenceAudioButton", "sentenceAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
 
 const savedVoice = localStorage.getItem("cantoVoice");
 if (savedVoice === "female" || savedVoice === "male") elements.voiceSelect.value = savedVoice;
@@ -95,8 +95,17 @@ async function showStudyWord() {
     elements.previousButton.disabled = studyIndex === 0;
     elements.continueButton.textContent = studyIndex === words.length - 1 ? "开始考察 →" : "下一词 →";
     const audioPath = `audio/${item.audio[elements.voiceSelect.value]}`;
+    const sentenceFile = item.sentenceAudio?.[elements.voiceSelect.value];
+    elements.sentenceAudioButton.disabled = !sentenceFile;
+    elements.sentenceAudioButton.textContent = sentenceFile ? "🔊 播放例句" : "例句音频待补充";
+    if (sentenceFile) elements.sentenceAudio.src = `audio/${sentenceFile}`;
     elements.wordAudio.src = audioPath;
     elements.audioButton.disabled = true;
+    if (item.audioStatus === "needs_review") {
+        elements.audioButton.textContent = "多音字录音待校对";
+        elements.message.textContent = item.audioReviewNote || "这条录音正在校对。";
+        return;
+    }
     elements.audioButton.textContent = "检查音频中……";
     try {
         const response = await fetch(audioPath, { method: "HEAD" });
@@ -150,7 +159,9 @@ function checkAnswer(button, choice, item) {
 }
 
 function playChallengeAudio(item, afterPlayback) {
-    const audioPath = `audio/${item.audio[elements.voiceSelect.value]}`;
+    const useSentenceAudio = item.audioStatus === "needs_review" && item.sentenceAudio?.[elements.voiceSelect.value];
+    const audioFile = useSentenceAudio ? item.sentenceAudio[elements.voiceSelect.value] : item.audio[elements.voiceSelect.value];
+    const audioPath = `audio/${audioFile}`;
     let finished = false;
     const finishOnce = () => {
         if (finished) return;
@@ -162,6 +173,7 @@ function playChallengeAudio(item, afterPlayback) {
     elements.wordAudio.currentTime = 0;
     elements.wordAudio.onended = finishOnce;
     elements.wordAudio.play().catch(() => window.setTimeout(finishOnce, 500));
+    if (useSentenceAudio) elements.challengeFeedback.textContent += " 单字录音待校对，当前播放例句。";
     if (afterPlayback) window.setTimeout(finishOnce, 3500);
 }
 
@@ -203,6 +215,7 @@ function shuffle(items) {
 elements.previousButton.addEventListener("click", () => { if (studyIndex > 0) { studyIndex -= 1; showStudyWord(); } });
 elements.continueButton.addEventListener("click", () => { if (studyIndex < words.length - 1) { studyIndex += 1; showStudyWord(); } else beginChallenge(); });
 elements.audioButton.addEventListener("click", () => { elements.wordAudio.currentTime = 0; elements.wordAudio.play().catch(() => { elements.message.textContent = "音频无法播放，请稍后重试。"; }); });
+elements.sentenceAudioButton.addEventListener("click", () => { elements.sentenceAudio.currentTime = 0; elements.sentenceAudio.play().catch(() => { elements.message.textContent = "例句音频无法播放，请稍后重试。"; }); });
 elements.voiceSelect.addEventListener("change", () => { localStorage.setItem("cantoVoice", elements.voiceSelect.value); showStudyWord(); });
 elements.categoryFilter.addEventListener("change", buildGroups);
 elements.levelFilter.addEventListener("change", buildGroups);
