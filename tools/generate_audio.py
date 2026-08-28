@@ -22,10 +22,17 @@ async def generate_one(text: str, voice: str, destination: Path, semaphore: asyn
             sys.executable, "-m", "edge_tts", "--voice", voice,
             "--rate=-4%", "--text", text, "--write-media", str(temporary),
         ]
-        result = await asyncio.to_thread(subprocess.run, command, capture_output=True, timeout=45)
-        if result.returncode:
-            raise RuntimeError(result.stderr.decode("utf-8", errors="replace"))
-        temporary.replace(destination)
+        last_error = ""
+        for attempt in range(3):
+            result = await asyncio.to_thread(subprocess.run, command, capture_output=True, timeout=60)
+            if result.returncode == 0 and temporary.exists() and temporary.stat().st_size:
+                temporary.replace(destination)
+                return
+            last_error = result.stderr.decode("utf-8", errors="replace")
+            if temporary.exists():
+                temporary.unlink()
+            await asyncio.sleep(2 ** attempt)
+        raise RuntimeError(last_error)
 
 
 async def generate_missing_sentences(root: Path, limit: int | None):
@@ -153,14 +160,52 @@ async def generate_pronunciation_inventory(root: Path):
     print(f"Prepared {len(targets)} pronunciation recordings.")
 
 
+async def generate_challenges(root: Path):
+    node = os.environ.get("CANTO_NODE", "node")
+    exported = subprocess.run(
+        [node, "tools/export_challenge_audio.mjs"],
+        cwd=root,
+        capture_output=True,
+        check=True,
+    )
+    records = json.loads(exported.stdout.decode("utf-8"))
+    audio_dir = root / "audio"
+    review_path = root / "data" / "audio-review.json"
+    semaphore = asyncio.Semaphore(1)
+    tasks = []
+    for record in records:
+        destination = audio_dir / record["file"]
+        if not destination.exists():
+            tasks.append(generate_one(record["text"], VOICES["female"], destination, semaphore))
+    if tasks:
+        await asyncio.gather(*tasks)
+
+    review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else []
+    filenames = {record["file"] for record in records}
+    review = [record for record in review if record.get("file") not in filenames]
+    timestamp = datetime.now(timezone.utc).isoformat()
+    for record in records:
+        record.update({
+            "gender": "female",
+            "voice": VOICES["female"],
+            "status": "generated_unreviewed",
+            "generatedAt": timestamp,
+        })
+    review_path.write_text(json.dumps(review + records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Prepared {len(records)} challenge recordings.")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default=".")
     parser.add_argument("--limit", type=int)
     parser.add_argument("--inventory", action="store_true")
+    parser.add_argument("--challenges", action="store_true")
     args = parser.parse_args()
     root = Path(args.root).resolve()
-    if args.inventory:
+    if args.challenges:
+        asyncio.run(generate_challenges(root))
+    elif args.inventory:
         asyncio.run(generate_pronunciation_inventory(root))
     else:
         asyncio.run(generate_missing_sentences(root, args.limit))
