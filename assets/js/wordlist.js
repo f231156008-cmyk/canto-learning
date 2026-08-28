@@ -56,13 +56,11 @@ function renderWords() {
             title,
             createLine("粤拼", word.jyutping),
             createLine("普通话含义", word.meaning),
-            createLine("英语释义", word.english),
             createLine("主题", word.category),
             createLine("难度", word.level || difficultyName(word.difficulty)),
             createLine("例句", word.example),
             createLine("例句粤拼", word.sentenceJyutping),
             createLine("例句普通话", word.translation),
-            createLine("例句英语", word.sentenceEnglish),
             createLine("读音说明", word.pronunciationNote)
         ].filter(Boolean);
         article.append(...lines);
@@ -89,7 +87,6 @@ function renderWords() {
                     createLine(choice.type || "例句", choice.example),
                     createLine("粤拼", choice.sentenceJyutping),
                     createLine("普通话", choice.translation),
-                    createLine("英语", choice.sentenceEnglish)
                 ].filter(Boolean).forEach(line => example.append(line));
                 details.append(example);
             });
