@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粤语词库浏览</title>
+<link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+    <h1>粤语词库浏览</h1>
+
+    <label for="categorySelect">主题：</label>
+    <select id="categorySelect">
+        <option value="all">全部主题</option>
+    </select>
+
+    <label for="difficultySelect">难度：</label>
+    <select id="difficultySelect">
+        <option value="all">全部难度</option>
+        <option value="1">入门</option>
+        <option value="2">初级</option>
+        <option value="3">中级</option>
+    </select>
+
+    <label for="voiceSelect">声音：</label>
+    <select id="voiceSelect">
+        <option value="female">女声</option>
+        <option value="male">男声</option>
+    </select>
+
+    <p id="count">正在加载词库……</p>
+    <p id="message"></p>
+
+    <div id="wordList"></div>
+
+    <p><a href="Canto.html">返回主页</a></p>
+
+    <audio id="wordAudio"></audio>
+    <script src="wordlist.js"></script>
+</body>
+
+</html>
+

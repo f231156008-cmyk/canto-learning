@@ -1,0 +1,185 @@
+:root {
+  --paper: #f5f0e4;
+  --card: #fffaf0;
+  --ink: #182b35;
+  --muted: #627078;
+  --line: #a8a18f;
+  --red: #b43a32;
+  --blue: #205b73;
+  --yellow: #d6a62b;
+  --green: #39705d;
+  --text-font: "I.MingCP", "Songti TC", "PMingLiU", "MingLiU", "Noto Serif TC", "Source Han Serif TC", serif;
+  --roman-font: Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+html { background: #ded7c7; color: var(--ink); }
+
+body {
+  max-width: 900px !important;
+  min-height: 100vh;
+  margin: 0 auto !important;
+  padding: 24px clamp(18px, 5vw, 54px) 60px !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  font-family: var(--text-font) !important;
+  text-align: left !important;
+  border-inline: 1px solid #c8c0ad;
+}
+
+h1 { margin: 0 0 10px; font-size: clamp(32px, 6vw, 54px); line-height: 1.08; letter-spacing: .02em; font-weight: 700; }
+h2 { margin-top: 34px; padding-left: 12px; border-left: 7px solid var(--red); }
+h3 { color: var(--blue); }
+p { line-height: 1.7; }
+a { color: var(--blue); text-underline-offset: 3px; }
+a:hover { color: var(--red); }
+
+button, input, select, textarea {
+  min-height: 42px;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  background: var(--card) !important;
+  color: var(--ink) !important;
+  font: inherit !important;
+}
+
+button { padding: 9px 16px !important; box-shadow: 2px 2px 0 #c4bba7 !important; font-weight: 700; }
+button:hover, button.active { background: var(--blue) !important; border-color: var(--blue) !important; color: white !important; }
+button:disabled { opacity: .5; box-shadow: none !important; }
+select, input { padding: 8px 10px !important; }
+
+fieldset, section, article, .panel, .card {
+  margin-block: 22px;
+  padding: 22px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  background: var(--card) !important;
+  box-shadow: 4px 4px 0 #d1c7b2 !important;
+}
+
+fieldset { position: relative; border-top: 7px solid var(--yellow) !important; }
+legend { padding: 0 8px; background: var(--paper); font-weight: 800; }
+label { display: inline-block; margin: 8px 6px 8px 0; }
+
+#jyutping, .jyutping, #typingClue, .mark, [data-tone-mark] {
+  font-family: var(--roman-font) !important;
+  letter-spacing: .045em;
+}
+
+.stage-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: stage;
+}
+.stage-map li {
+  position: relative;
+  padding: 48px 8px 8px;
+  color: var(--muted);
+  text-align: center;
+  font-weight: 700;
+}
+.stage-map li::before {
+  counter-increment: stage;
+  content: counter(stage);
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  transform: translateX(-50%);
+  border: 3px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  line-height: 28px;
+}
+.stage-map li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 58%;
+  width: 84%;
+  height: 3px;
+  background: var(--line);
+}
+.stage-map li.active { color: var(--red); }
+.stage-map li.active::before { border-color: var(--red); background: var(--red); color: white; }
+
+.route-status {
+  display: inline-block;
+  margin: 8px 0 18px;
+  padding: 6px 10px;
+  background: var(--ink);
+  color: white;
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+
+.mode-selector { justify-content: flex-start !important; }
+.mode-selector button.active, .tab.active { background: var(--red) !important; border-color: var(--red) !important; }
+
+body > ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; padding: 0; list-style: none; }
+body > ul li { border: 1px solid var(--line); border-left: 8px solid var(--blue); background: var(--card); box-shadow: 3px 3px 0 #d1c7b2; }
+body > ul a { display: block; padding: 20px; color: var(--ink); font-weight: 800; text-decoration: none; }
+body > ul li:nth-child(3n+2) { border-left-color: var(--red); }
+body > ul li:nth-child(3n) { border-left-color: var(--yellow); }
+
+#word, #toneMarkWord, .word { color: var(--red) !important; }
+#progress, #quizRouteStatus { font-weight: 800; color: var(--green); }
+
+.vocabulary-back-row {
+  display: flex;
+  justify-content: flex-start;
+  margin: 18px 0 4px;
+}
+
+button.previous-word-button {
+  padding: 4px 9px !important;
+  margin: 0 !important;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 1px 1px 0 #c4bba7 !important;
+  color: #625e55;
+}
+
+.vocabulary-mark-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vocabulary-mark-actions button {
+  min-width: 138px;
+}
+
+.mark-hint {
+  margin-top: 3px;
+  color: #777064;
+  font-size: 12px;
+}
+
+.vocabulary-panel { position: relative; margin: 18px 0; padding: 22px; border: 2px solid var(--ink); background: #fffdf6; box-shadow: 5px 5px 0 #d9cfbb; }
+.vocabulary-panel[hidden] { display: none; }
+.vocabulary-study-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.challenge-label { display: inline-block; margin: 0; padding: 4px 9px; background: var(--yellow); border: 1px solid var(--ink); font-weight: 800; }
+.challenge-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.challenge-options button { min-height: 52px; margin: 0 !important; text-align: left; }
+.challenge-options button.correct-answer { background: var(--green) !important; border-color: var(--green) !important; color: white !important; }
+.challenge-options button.wrong-answer { background: var(--red) !important; border-color: var(--red) !important; color: white !important; opacity: .7; }
+.route-stamp { width: 76px; height: 76px; margin: 0 auto; border: 4px double var(--red); border-radius: 50%; color: var(--red); display: grid; place-items: center; font-size: 22px; font-weight: 900; transform: rotate(-8deg); }
+#completePanel { text-align: center; }
+.correct { color: var(--green) !important; }
+.wrong { color: var(--red) !important; }
+
+@media (max-width: 620px) {
+  body { border: 0; }
+  fieldset label, fieldset select { display: block; width: 100%; }
+  .stage-map li { font-size: 12px; }
+  button { margin: 6px 3px !important; }
+  .challenge-options { grid-template-columns: 1fr; }
+}
