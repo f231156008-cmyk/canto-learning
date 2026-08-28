@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粤语词汇学习</title>
+<link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+    <h1>词汇闯关</h1>
+
+    <ol class="stage-map" aria-label="学习关卡">
+        <li class="active">选择路线</li>
+        <li>学习本组</li>
+        <li>系统考察</li>
+        <li>完成闯关</li>
+    </ol>
+
+    <fieldset aria-label="学习路线">
+        <label for="categoryFilter"><strong>主题</strong></label>
+        <select id="categoryFilter">
+            <option value="">全部主题</option>
+        </select>
+
+        <label for="levelFilter"><strong>难度</strong></label>
+        <select id="levelFilter">
+            <option value="">全部难度</option>
+        </select>
+
+        <label for="groupFilter"><strong>关卡</strong></label>
+        <select id="groupFilter"></select>
+    </fieldset>
+
+    <p id="progress">正在加载……</p>
+
+    <section id="studyPanel" class="vocabulary-panel">
+    <h2 id="word"></h2>
+
+    <p><strong>粤拼</strong>　<span id="jyutping"></span></p>
+    <p><strong>例句</strong>　<span id="example"></span></p>
+
+    <label for="voiceSelect"><strong>声音</strong></label>
+    <select id="voiceSelect">
+        <option value="female">女声</option>
+        <option value="male">男声</option>
+    </select>
+
+    <button id="audioButton" type="button">🔊 播放发音</button>
+    <audio id="wordAudio"></audio>
+
+    <div class="vocabulary-study-nav">
+        <button id="previousButton" class="previous-word-button" type="button">← 上一词</button>
+        <button id="continueButton" type="button">下一词 →</button>
+    </div>
+    </section>
+
+    <section id="challengePanel" class="vocabulary-panel" hidden>
+        <p class="challenge-label" id="challengeType"></p>
+        <h2 id="challengeWord"></h2>
+        <div id="challengeOptions" class="challenge-options"></div>
+        <p id="challengeFeedback" aria-live="polite"></p>
+    </section>
+
+    <section id="completePanel" class="vocabulary-panel" hidden>
+        <p class="route-stamp">过关</p>
+        <h2>本组完成</h2>
+        <p id="completeSummary"></p>
+        <button id="nextGroupButton" type="button">进入下一关 →</button>
+        <button id="repeatGroupButton" type="button">再练一次</button>
+    </section>
+
+    <p id="syncStatus">正在连接进度记录……</p>
+    <p id="progressSummary"></p>
+
+    <p id="message"></p>
+
+    <a href="Canto.html">返回主页</a>
+
+    <script src="vocabulary.js"></script>
+</body>
+
+</html>
+

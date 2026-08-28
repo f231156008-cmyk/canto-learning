@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>粤语词库练习</title>
+
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+
+            max-width: 700px;
+
+            margin: 60px auto;
+
+            padding: 20px;
+
+            text-align: center;
+        }
+
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+
+        #word {
+
+            font-size: 48px;
+
+            font-weight: bold;
+
+            margin: 40px 0;
+
+        }
+
+
+        #answerInput {
+
+            width: 300px;
+
+            padding: 12px;
+
+            font-size: 18px;
+
+            text-align: center;
+
+        }
+
+
+        button {
+
+            padding: 10px 20px;
+
+            margin: 10px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        #result {
+
+            margin-top: 25px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        #analysis {
+
+            margin-top: 30px;
+
+            line-height: 1.8;
+
+        }
+
+
+        #analysis hr {
+
+            margin-top: 30px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        #audioButton {
+
+            margin-top: 10px;
+
+        }
+
+
+        .back-home {
+
+            display: block;
+
+            margin-top: 50px;
+
+        }
+
+        .tone-mark-section {
+            margin-top: 55px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        #toneMarkWord { font-size: 40px; font-weight: bold; }
+        #toneMarkInputs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .mark { display: grid; gap: 6px; font-size: 22px; }
+        .mark select { padding: 8px; font-size: 16px; }
+        .mode-selector { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px 0 35px; }
+        .mode-selector button { margin: 0; background: #edf6f2; color: #263b34; border: 1px solid #c8ddd4; }
+        .mode-selector button.active { background: #176b54; color: white; }
+        .quiz-mode[hidden] { display: none; }
+        #generatedPrompt { font-size: 36px; font-weight: bold; margin: 28px 0; }
+        #generatedOptions { display: grid; gap: 10px; max-width: 520px; margin: 18px auto; }
+        #generatedOptions button { margin: 0; }
+        #orderAnswer { min-height: 55px; padding: 12px; border: 1px dashed #999; margin: 15px 0; font-size: 24px; }
+        #orderProgress { color: #617069; }
+        #orderControls { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+        #orderControls button { margin: 0; }
+
+    </style>
+
+<link rel="stylesheet" href="site.css">
+</head>
+
+
+<body>
+
+
+    <h1>
+        练习闯关
+    </h1>
+
+    <ol class="stage-map" aria-label="测试关卡">
+        <li class="active">选择路线</li>
+        <li class="active">完成挑战</li>
+        <li>重练错题</li>
+    </ol>
+
+    <fieldset id="quizRouteSelector" aria-label="测试路线">
+        <label for="quizCategoryFilter">主题</label>
+        <select id="quizCategoryFilter"><option value="">全部主题</option></select>
+        <label for="quizLevelFilter">难度</label>
+        <select id="quizLevelFilter"><option value="">全部难度</option></select>
+        <p id="quizRouteStatus"></p>
+    </fieldset>
+
+    <nav id="modeSelector" class="mode-selector" aria-label="选择题型">
+        <button class="active" data-mode="tone">粤拼补声调</button>
+        <button data-mode="full">粤拼打字（不计声调）</button>
+    </nav>
+
+    <section id="fullMode" class="quiz-mode" hidden>
+
+
+    <label for="voiceSelect">
+        发音声音：
+    </label>
+
+    <select id="voiceSelect">
+        <option value="female">女声</option>
+        <option value="male">男声</option>
+    </select>
+
+
+    <!-- 随机粤语词显示位置 -->
+
+    <div id="word">
+        正在加载……
+    </div>
+
+    <p id="typingClue" style="font-size: 28px; font-weight: bold;"></p>
+
+
+    <!-- 用户输入答案 -->
+
+    <input
+        id="answerInput"
+        type="text"
+        placeholder="只输入空缺部分，例如：nei"
+        autocomplete="off"
+    >
+
+
+    <br>
+
+
+    <!-- 提交 -->
+
+    <button id="submitButton">
+        提交
+    </button>
+
+
+    <!-- 下一题 -->
+
+    <button id="nextButton">
+        下一题
+    </button>
+
+
+    <!-- 正确 / 错误 -->
+
+    <div id="result">
+    </div>
+
+    <p id="saveStatus" aria-live="polite"></p>
+
+
+    <!-- 答案解析 -->
+
+    <div id="analysis">
+    </div>
+
+    </section>
+
+    <section id="toneMode" class="tone-mark-section quiz-mode" hidden>
+        <h2>看粤拼标音调</h2>
+        <p id="toneMarkWord"></p>
+        <p id="toneMarkClue"></p>
+        <div id="toneMarkInputs"></div>
+        <button id="checkToneMark">检查答案</button>
+        <button id="toneMarkReplay" type="button" hidden>🔊 重新播放</button>
+        <button id="newToneMark">换一题</button>
+        <button id="retryToneMark">重练错题</button>
+        <p id="toneMarkResult" aria-live="polite"></p>
+        <p id="toneMarkStats"></p>
+        <p id="toneMarkSaveStatus"></p>
+    </section>
+
+    <section id="generatedMode" class="quiz-mode" hidden>
+        <h2 id="generatedTitle"></h2>
+        <p id="generatedInstruction"></p>
+        <p id="generatedPrompt"></p>
+        <button id="generatedAudio" hidden>🔊 播放题目</button>
+        <div id="orderAnswer" hidden></div>
+        <p id="orderProgress" hidden></p>
+        <div id="orderControls" hidden>
+            <button id="orderUndo" type="button">撤回一步</button>
+            <button id="orderReset" type="button">重新排列</button>
+            <button id="orderAudio" type="button">🔊 播放例句</button>
+        </div>
+        <div id="generatedOptions"></div>
+        <p id="generatedResult" aria-live="polite"></p>
+        <p id="generatedSaveStatus"></p>
+        <button id="generatedNext">换一题</button>
+    </section>
+
+
+    <!-- 返回主页 -->
+
+    <a
+        class="back-home"
+        href="Canto.html"
+    >
+        返回主页
+    </a>
+
+
+    <!-- 连接 JavaScript -->
+
+    <script src="quiz.js"></script>
+    <script src="quiz-modes.js"></script>
+
+
+</body>
+
+</html>
+
