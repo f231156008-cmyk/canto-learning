@@ -183,10 +183,71 @@ button.previous-word-button {
 .wordlist-example-choice { margin-top: 12px; padding: 8px 14px; border-left: 4px solid var(--yellow); background: var(--paper); }
 .wordlist-example-choice p { margin: 4px 0; }
 
+.floating-site-nav {
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: max(12px, calc(50% - 590px));
+  width: 112px;
+  padding: 8px;
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  background: rgba(245, 240, 228, .97);
+  box-shadow: 4px 4px 0 #c4bba7;
+}
+
+.floating-site-nav a {
+  display: block;
+  padding: 8px 10px;
+  border-bottom: 1px solid #d3cbb9;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.floating-site-nav a:last-child { border-bottom: 0; }
+.floating-site-nav a:hover { color: var(--red); }
+.floating-site-nav a.active { background: var(--red); color: #fffaf0; }
+
+@media (min-width: 721px) and (max-width: 1179px) {
+  body {
+    max-width: calc(100vw - 154px) !important;
+    margin-right: 16px !important;
+    margin-left: 138px !important;
+  }
+  .floating-site-nav { left: 14px; }
+}
+
 @media (max-width: 620px) {
-  body { border: 0; }
+  body { border: 0; padding-bottom: 94px !important; }
   fieldset label, fieldset select { display: block; width: 100%; }
   .stage-map li { font-size: 12px; }
   button { margin: 6px 3px !important; }
   .challenge-options { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  body { padding-bottom: 94px !important; }
+  .floating-site-nav {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    transform: none;
+    display: flex;
+    overflow-x: auto;
+    border-width: 1px 0 0;
+    box-shadow: 0 -3px 0 #c4bba7;
+  }
+  .floating-site-nav a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 2px;
+    border: 0;
+    text-align: center;
+    font-size: 14px;
+  }
 }
