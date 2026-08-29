@@ -17,6 +17,9 @@
 2. 在 SQL Editor 执行 `supabase/migrations/001_initial_schema.sql`。
 3. 在项目根目录运行 `powershell -File tools/words-to-sql.ps1`。
 4. 在 SQL Editor 执行生成的 `supabase/seed.sql`。
+5. 执行 `supabase/migrations/003_client_grants.sql`，让网站在 RLS 保护下读取词库和保存个人进度。
+
+当前前端使用 Supabase 的 publishable key。这个密钥允许公开放在网页中；真正具备后台权限的 secret/service-role key 不得加入 GitHub。
 
 `seed.sql` 可以重复执行：现有词条会更新，不会因再次导入而重复。
 
@@ -58,4 +61,3 @@ group by w.id, w.word
 order by wrong_times desc
 limit 20;
 ```
-

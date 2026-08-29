@@ -217,6 +217,15 @@ button.previous-word-button {
 .completed-question-card p { margin: 5px 0; }
 .completed-question-card button { margin: 8px 0 0 !important; }
 
+.cloud-auth-dock { position: fixed; z-index: 1100; top: 14px; right: 14px; display: flex; align-items: center; gap: 8px; max-width: 260px; padding: 6px; border: 1px solid var(--line); background: rgba(255,250,240,.96); box-shadow: 3px 3px 0 #c4bba7; }
+.cloud-auth-dock button { min-height: 32px; margin: 0 !important; padding: 4px 9px !important; }
+.cloud-auth-dock span { overflow: hidden; color: var(--muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.cloud-auth-dialog { width: min(420px, calc(100vw - 28px)); padding: 28px; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: 8px 8px 0 rgba(0,0,0,.25); }
+.cloud-auth-dialog::backdrop { background: rgba(18,24,29,.65); }
+.cloud-auth-dialog h2 { margin-top: 0; }
+.cloud-auth-dialog input { width: 100%; margin: 6px 0 12px; }
+.cloud-auth-close { float: right; min-height: 30px; margin: -18px -18px 0 0 !important; padding: 2px 8px !important; }
+
 @media (min-width: 721px) and (max-width: 1179px) {
   body {
     max-width: calc(100vw - 154px) !important;

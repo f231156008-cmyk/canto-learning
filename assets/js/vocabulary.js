@@ -10,9 +10,19 @@ if (savedVoice === "female" || savedVoice === "male") elements.voiceSelect.value
 
 async function loadWords() {
     try {
-        const response = await fetch("data/words.json");
-        if (!response.ok) throw new Error();
-        allWords = await response.json();
+        if (window.CantoCloud) {
+            try {
+                allWords = await window.CantoCloud.loadWords();
+                elements.syncStatus.textContent = "已连接在线词库";
+            } catch (cloudError) {
+                console.warn("在线词库暂时不可用，改用本地词库。", cloudError);
+            }
+        }
+        if (!Array.isArray(allWords) || !allWords.length) {
+            const response = await fetch("data/words.json");
+            if (!response.ok) throw new Error();
+            allWords = await response.json();
+        }
         if (!Array.isArray(allWords) || !allWords.length) throw new Error();
         populateFilters();
         buildGroups();
@@ -146,12 +156,14 @@ function checkAnswer(button, choice, item) {
         button.classList.add("wrong-answer");
         button.disabled = true;
         elements.challengeFeedback.textContent = `未答对，听完再试。释义：${item.meaning || "待补充"}`;
+        window.CantoCloud?.saveProgress(item.id, "learning", false).catch(console.warn);
         playChallengeAudio(item);
         return;
     }
     button.classList.add("correct-answer");
     elements.challengeOptions.querySelectorAll("button").forEach(option => { option.disabled = true; });
     elements.challengeFeedback.textContent = `答对了。释义：${item.meaning || "待补充"}`;
+    window.CantoCloud?.saveProgress(item.id, "review", true).catch(console.warn);
     playChallengeAudio(item, () => {
         challengeIndex += 1;
         if (challengeIndex < challengeWords.length) showChallenge();
@@ -189,7 +201,12 @@ async function finishGroup() {
     const savedProgress = JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}");
     words.forEach(item => { savedProgress[item.id] = "mastered"; });
     localStorage.setItem("cantoStandaloneProgress", JSON.stringify(savedProgress));
-    elements.syncStatus.textContent = "本关成绩已保存在此浏览器";
+    const cloudResults = window.CantoCloud
+        ? await Promise.allSettled(words.map(item => window.CantoCloud.saveProgress(item.id, "mastered", null)))
+        : [];
+    elements.syncStatus.textContent = cloudResults.some(result => result.status === "fulfilled" && result.value)
+        ? "本关成绩已同步到账号"
+        : "本关成绩已保存在此浏览器；登录后可跨设备同步";
 }
 
 function renderGroupProgress() {
@@ -201,7 +218,18 @@ function renderGroupProgress() {
 async function loadProgress() {
     const savedProgress = JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}");
     remoteProgress = new Map(Object.entries(savedProgress).map(([wordId, status]) => [Number(wordId), status]));
-    elements.syncStatus.textContent = "闯关记录保存在此浏览器";
+    if (window.CantoCloud) {
+        try {
+            const cloudRows = await window.CantoCloud.loadProgress();
+            cloudRows.forEach(row => {
+                if (row.words?.legacy_id) remoteProgress.set(Number(row.words.legacy_id), row.status);
+            });
+            if (cloudRows.length) elements.syncStatus.textContent = "已恢复账号学习进度";
+            else elements.syncStatus.textContent = "闯关记录保存在此浏览器；登录后可跨设备同步";
+        } catch (error) {
+            console.warn("账号进度暂时无法读取。", error);
+        }
+    } else elements.syncStatus.textContent = "闯关记录保存在此浏览器";
     renderGroupProgress();
 }
 
@@ -226,3 +254,4 @@ elements.repeatGroupButton.addEventListener("click", () => startGroup(Number(ele
 
 loadWords();
 loadProgress();
+document.addEventListener("canto-auth-change", loadProgress);

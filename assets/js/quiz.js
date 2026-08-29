@@ -388,6 +388,17 @@ function saveStandaloneAttempt(attempt) {
     const attempts = JSON.parse(localStorage.getItem("cantoStandaloneQuiz") || "[]");
     attempts.push({ ...attempt, at: Date.now() });
     localStorage.setItem("cantoStandaloneQuiz", JSON.stringify(attempts.slice(-200)));
+    if (window.CantoCloud) {
+        window.CantoCloud.saveAttempt({
+            legacyId: Number(attempt.wordId),
+            questionType: attempt.quizType,
+            answer: attempt.answer,
+            isCorrect: Boolean(attempt.isCorrect)
+        }).then(saved => {
+            const status = document.getElementById(attempt.quizType === "tone_mark" ? "toneMarkSaveStatus" : "saveStatus");
+            if (saved && status) status.textContent = "本题记录已同步到账号。";
+        }).catch(error => console.warn("答题记录同步失败。", error));
+    }
     renderCompletedQuestions();
 }
 
