@@ -16,6 +16,7 @@ let currentAnswered = false;
 // 记录上一题
 let previousIndex = -1;
 let typingBlank = null;
+let forcedTypingQuestionId = null;
 
 
 // 保存发音声音偏好
@@ -86,6 +87,7 @@ async function loadWords() {
 
         populateQuizFilters();
         applyQuizFilters(false);
+        renderCompletedQuestions();
 
 
         console.log(
@@ -151,11 +153,25 @@ function showRandomQuestion() {
     }
 
 
+    const completedIds = getCompletedWordIds("jyutping_typing_no_tone");
+    let availableWords = forcedTypingQuestionId === null
+        ? words.filter(item => !completedIds.has(item.id))
+        : words.filter(item => item.id === forcedTypingQuestionId);
+    if (!availableWords.length) {
+        currentQuestion = null;
+        document.getElementById("word").textContent = "这条路线的题目已全部完成";
+        document.getElementById("typingClue").textContent = "可在下方“做过的题”中选择重练。";
+        document.getElementById("answerInput").value = "";
+        document.getElementById("result").textContent = "";
+        document.getElementById("analysis").innerHTML = "";
+        return;
+    }
+
     let randomIndex;
 
 
     // 如果词库只有一个词
-    if (words.length === 1) {
+    if (availableWords.length === 1) {
 
         randomIndex = 0;
 
@@ -167,7 +183,7 @@ function showRandomQuestion() {
             randomIndex =
                 Math.floor(
                     Math.random()
-                    * words.length
+                    * availableWords.length
                 );
 
         } while (
@@ -183,7 +199,8 @@ function showRandomQuestion() {
 
     // 保存当前题目
     currentQuestion =
-        words[randomIndex];
+        availableWords[randomIndex];
+    forcedTypingQuestionId = null;
     currentAnswered = false;
 
     const typingSyllables = currentQuestion.jyutping.trim().split(/\s+/);
@@ -371,7 +388,59 @@ function saveStandaloneAttempt(attempt) {
     const attempts = JSON.parse(localStorage.getItem("cantoStandaloneQuiz") || "[]");
     attempts.push({ ...attempt, at: Date.now() });
     localStorage.setItem("cantoStandaloneQuiz", JSON.stringify(attempts.slice(-200)));
+    renderCompletedQuestions();
 }
+
+function getQuizAttempts() {
+    try {
+        const attempts = JSON.parse(localStorage.getItem("cantoStandaloneQuiz") || "[]");
+        return Array.isArray(attempts) ? attempts : [];
+    } catch {
+        return [];
+    }
+}
+
+function getCompletedWordIds(quizType) {
+    return new Set(getQuizAttempts().filter(attempt => attempt.quizType === quizType).map(attempt => Number(attempt.wordId)));
+}
+
+function renderCompletedQuestions() {
+    const list = document.getElementById("completedQuestionList");
+    const summary = document.getElementById("completedQuestionSummary");
+    if (!list || !summary) return;
+    const latest = new Map();
+    getQuizAttempts()
+        .filter(attempt => ["tone_mark", "jyutping_typing_no_tone"].includes(attempt.quizType))
+        .forEach(attempt => latest.set(`${attempt.quizType}:${attempt.wordId}`, attempt));
+    const attempts = [...latest.values()].sort((a, b) => b.at - a.at);
+    summary.textContent = attempts.length ? `已收集 ${attempts.length} 道题；正常抽题不会再次出现。` : "尚未完成题目。";
+    list.className = "completed-question-list";
+    list.innerHTML = attempts.map(attempt => {
+        const word = allQuizWords.find(item => item.id === Number(attempt.wordId));
+        const typeName = attempt.quizType === "tone_mark" ? "标音调" : "粤拼打字";
+        return `<article class="completed-question-card ${attempt.isCorrect ? "" : "wrong-answer"}">
+            <p><strong>${attempt.prompt}</strong>　${typeName}　${attempt.isCorrect ? "答对" : "答错"}</p>
+            <p>作答：${attempt.answer || "—"}　｜　答案：${attempt.correctAnswer || "—"}</p>
+            ${word?.meaning ? `<p>释义：${word.meaning}</p>` : ""}
+            <button type="button" data-repractice-type="${attempt.quizType}" data-repractice-id="${attempt.wordId}">重练此题</button>
+        </article>`;
+    }).join("");
+}
+
+document.getElementById("completedQuestionList").addEventListener("click", event => {
+    const button = event.target.closest("[data-repractice-id]");
+    if (!button) return;
+    const wordId = Number(button.dataset.repracticeId);
+    if (button.dataset.repracticeType === "tone_mark") {
+        document.querySelector('#modeSelector [data-mode="tone"]').click();
+        showToneMarkQuestion(false, wordId);
+    } else {
+        document.querySelector('#modeSelector [data-mode="full"]').click();
+        forcedTypingQuestionId = wordId;
+        showRandomQuestion();
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 
 
@@ -419,6 +488,8 @@ function showAnalysis(
             ${currentQuestion.jyutping}
 
         </p>
+
+        <p><strong>释义：</strong>${currentQuestion.meaning || "待补充"}</p>
 
 
         <p>
@@ -589,10 +660,22 @@ function showToneMarkStats() {
     document.getElementById("toneMarkStats").textContent = `答对 ${toneMarkStats.right} / ${toneMarkStats.total} · 错题 ${toneMarkStats.bad.length}`;
 }
 
-function showToneMarkQuestion(retry = false) {
+function showToneMarkQuestion(retry = false, specificId = null) {
     if (!words.length) return;
     const retryPool = retry && toneMarkStats.bad.length ? words.filter(w => toneMarkStats.bad.includes(w.id)) : [];
-    const pool = retryPool.length ? retryPool : words;
+    const completedIds = getCompletedWordIds("tone_mark");
+    const freshPool = words.filter(word => !completedIds.has(word.id));
+    const specificPool = specificId === null ? [] : words.filter(word => word.id === specificId);
+    const pool = specificPool.length ? specificPool : retryPool.length ? retryPool : freshPool;
+    if (!pool.length) {
+        toneMarkQuestion = null;
+        document.getElementById("toneMarkWord").textContent = "这条路线的题目已全部完成";
+        document.getElementById("toneMarkClue").textContent = "可在下方“做过的题”中选择重练。";
+        document.getElementById("toneMarkInputs").innerHTML = "";
+        document.getElementById("toneMarkResult").textContent = "";
+        document.getElementById("checkToneMark").disabled = true;
+        return;
+    }
     toneMarkQuestion = pool[Math.floor(Math.random() * pool.length)];
     toneMarkAnswered = false;
     document.getElementById("toneMarkWord").textContent = toneMarkQuestion.word;
