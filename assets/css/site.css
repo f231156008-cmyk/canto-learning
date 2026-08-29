@@ -210,6 +210,13 @@ button.previous-word-button {
 .floating-site-nav a:hover { color: var(--red); }
 .floating-site-nav a.active { background: var(--red); color: #fffaf0; }
 
+.completed-questions { margin-top: 34px; }
+.completed-question-list { display: grid; gap: 10px; }
+.completed-question-card { padding: 14px; border: 1px solid var(--line); border-left: 5px solid var(--blue); background: var(--paper); }
+.completed-question-card.wrong-answer { border-left-color: var(--red); }
+.completed-question-card p { margin: 5px 0; }
+.completed-question-card button { margin: 8px 0 0 !important; }
+
 @media (min-width: 721px) and (max-width: 1179px) {
   body {
     max-width: calc(100vw - 154px) !important;
