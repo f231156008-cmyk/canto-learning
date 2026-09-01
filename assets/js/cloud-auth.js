@@ -45,6 +45,11 @@
                 };
             });
         },
+        async loadDailyLibraryEntry() {
+            const { data, error } = await client.from("library_entries").select("entry_type,title,creator,excerpt,featured_on").eq("is_published", true).order("featured_on", { ascending: false, nullsFirst: false }).order("created_at", { ascending: false }).limit(1).maybeSingle();
+            if (error) throw error;
+            return data;
+        },
         async loadProgress() {
             const active = await session();
             if (!active) return [];

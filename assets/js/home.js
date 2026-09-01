@@ -18,5 +18,15 @@
         if (!window.CantoCloud) return;
         try { const active = await window.CantoCloud.session(); if (!active) return; const rows = await window.CantoCloud.loadProgress(); const learned = rows.length; byId("masteredCount").textContent = learned; byId("homeProgressFill").style.width = `${Math.min(100, learned)}%`; byId("progressSource").textContent = "云端记录"; byId("homeGreeting").textContent = `欢迎回来，${active.user.email.split("@")[0]}。`; byId("progressNote").textContent = learned ? `云端已经保存 ${learned} 个词的学习进度。` : "账号已连接，接下来的学习会自动保存。"; } catch (error) { console.warn("云端进度暂时不可用", error); }
     }
+    async function refreshDailyLine() {
+        if (!window.CantoCloud?.loadDailyLibraryEntry) return;
+        try {
+            const entry = await window.CantoCloud.loadDailyLibraryEntry();
+            if (!entry) return;
+            byId("dailyLibraryLine").textContent = entry.excerpt;
+            byId("dailyLibrarySource").textContent = [entry.creator, entry.title, entry.entry_type].filter(Boolean).join(" · ");
+        } catch (error) { console.warn("首页句库暂时不可用", error); }
+    }
     document.addEventListener("canto-auth-change", refreshCloudProgress); document.addEventListener("canto-cloud-ready", refreshCloudProgress); refreshCloudProgress();
+    document.addEventListener("canto-cloud-ready", refreshDailyLine); refreshDailyLine();
 })();
