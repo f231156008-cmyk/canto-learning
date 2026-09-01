@@ -236,6 +236,19 @@ button.previous-word-button {
 .home-page section h2 { margin: 0; padding: 0; border: 0; font-size: 25px; }
 .home-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .home-source { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.home-library { overflow: hidden; border-top: 7px solid var(--blue) !important; }
+.library-shelves { display: flex; gap: 8px; margin: 19px 0 14px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+.library-shelves span { padding: 4px 9px; color: var(--muted); font-size: 13px; font-weight: 800; }
+.library-shelves .active { background: var(--ink); color: var(--card); }
+.library-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.library-preview-grid article { min-width: 0; margin: 0; padding: 16px !important; border: 1px solid var(--line) !important; border-radius: 0 !important; background: var(--paper) !important; box-shadow: none !important; }
+.library-preview-grid article:nth-child(2) { border-top: 4px solid var(--red) !important; }
+.library-preview-grid article:nth-child(3) { border-top: 4px solid var(--yellow) !important; }
+.library-preview-grid h3 { margin: 5px 0 9px; color: var(--ink); font-size: 20px; }
+.library-preview-grid p { margin: 0 0 10px; line-height: 1.55; }
+.library-preview-grid small { color: var(--muted); }
+.library-kind { color: var(--red); font-size: 12px; font-weight: 900; }
+.library-copyright-note { margin: 13px 0 0; color: var(--muted); font-size: 12px; }
 .home-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 24px 0 18px; }
 .home-stats div { padding: 4px 18px; border-left: 1px solid var(--line); }
 .home-stats div:first-child { padding-left: 0; border-left: 0; }
@@ -284,6 +297,8 @@ button.previous-word-button {
   .home-continue { align-items: stretch; flex-direction: column; }
   .home-primary-action { text-align: center; }
   .home-grid { grid-template-columns: 1fr; }
+  .library-preview-grid { grid-template-columns: 1fr; }
+  .library-preview-grid article:nth-child(3) { display: none; }
   .home-activity-row { grid-template-columns: 46px 1fr; }
   .home-activity-row time { grid-column: 2; }
 }
