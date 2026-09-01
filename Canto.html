@@ -1,57 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-HK">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>粤语学习网</title>
-<link rel="stylesheet" href="assets/css/site.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粤语学习网</title><link rel="stylesheet" href="assets/css/site.css">
 </head>
-
-
-<body>
-
-<h1>粤语学习网</h1>
-
-
-<ul>
-
-<li>
-<a href="pronunciation.html">
-发音学习
-</a>
-</li>
-
-
-<li>
-<a href="vocabulary.html">
-词汇学习
-</a>
-</li>
-
-<li>
-<a href="wordlist.html">
-词库浏览
-</a>
-</li>
-
-<li><a href="characters.html">繁体字形学习</a></li>
-
-
-<li><a href="cha-chaan-teng.html">香港在地闯关</a></li>
-
-<li>
-<a href="quiz.html">
-练习测试
-</a>
-</li>
-
-
-</ul>
-
-
-<script src="assets/js/site-nav.js"></script></body>
-
-</html>
-
-
+<body class="home-page">
+<header class="home-masthead"><p class="home-kicker" id="homeDate"></p><h1>今日继续学广东话</h1><p id="homeGreeting" class="home-greeting">几分钟，也算向前一步。</p></header>
+<main>
+<section class="home-progress-card" aria-labelledby="progressTitle">
+  <div class="home-card-heading"><div><p class="home-label">学习进度</p><h2 id="progressTitle">你的学习册</h2></div><span id="progressSource" class="home-source">本机记录</span></div>
+  <div class="home-stats"><div><strong id="masteredCount">0</strong><span>已学词汇</span></div><div><strong id="accuracyRate">—</strong><span>练习正确率</span></div><div><strong id="studyDays">0</strong><span>有记录天数</span></div></div>
+  <div class="home-progress-track" aria-hidden="true"><i id="homeProgressFill"></i></div><p id="progressNote" class="home-progress-note">正在整理学习记录……</p>
+</section>
+<section class="home-continue" aria-labelledby="continueTitle"><div><p class="home-label">下一站</p><h2 id="continueTitle">继续词汇闯关</h2><p id="continueNote">从上次选择的主题和难度继续。</p></div><a class="home-primary-action" href="vocabulary.html">继续学习 →</a></section>
+<section class="home-grid" aria-label="学习入口">
+  <a href="quiz.html"><span>练</span><strong>做一组练习</strong><small>粤拼与声调</small></a>
+  <a href="wordlist.html"><span>查</span><strong>翻阅词库</strong><small>主题、难度与例句</small></a>
+  <a href="pronunciation.html"><span>听</span><strong>温习发音</strong><small>声母、韵母与六声</small></a>
+  <a href="cha-chaan-teng.html"><span>行</span><strong>香港在地闯关</strong><small>把词放进生活里</small></a>
+</section>
+<section class="home-recent" aria-labelledby="recentTitle"><div class="home-card-heading"><div><p class="home-label">最近</p><h2 id="recentTitle">学习记录</h2></div></div><div id="recentActivity" class="home-empty">还没有答题记录，今天来做第一题吧。</div></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="assets/js/supabase-config.js"></script><script src="assets/js/cloud-auth.js"></script><script src="assets/js/home.js"></script><script src="assets/js/site-nav.js"></script>
+</body></html>

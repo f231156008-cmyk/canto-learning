@@ -226,6 +226,44 @@ button.previous-word-button {
 .cloud-auth-dialog input { width: 100%; margin: 6px 0 12px; }
 .cloud-auth-close { float: right; min-height: 30px; margin: -18px -18px 0 0 !important; padding: 2px 8px !important; }
 
+/* Home dashboard */
+.home-page { padding-top: clamp(34px, 7vw, 72px) !important; }
+.home-masthead { margin-bottom: 30px; border-bottom: 1px solid var(--line); }
+.home-kicker, .home-label { margin: 0 0 5px; color: var(--red); font-size: 13px; font-weight: 900; letter-spacing: .14em; }
+.home-masthead h1 { max-width: 640px; margin-bottom: 12px; }
+.home-greeting { margin: 0 0 24px; color: var(--muted); }
+.home-page section { margin-block: 18px; }
+.home-page section h2 { margin: 0; padding: 0; border: 0; font-size: 25px; }
+.home-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.home-source { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.home-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 24px 0 18px; }
+.home-stats div { padding: 4px 18px; border-left: 1px solid var(--line); }
+.home-stats div:first-child { padding-left: 0; border-left: 0; }
+.home-stats strong { display: block; color: var(--red); font-family: var(--roman-font); font-size: clamp(30px, 6vw, 46px); line-height: 1; }
+.home-stats span { display: block; margin-top: 7px; color: var(--muted); font-size: 13px; }
+.home-progress-track { height: 8px; overflow: hidden; border: 1px solid var(--line); background: #e1d9c7; }
+.home-progress-track i { display: block; width: 0; height: 100%; background: var(--green); transition: width .4s ease; }
+.home-progress-note { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+.home-continue { display: flex; align-items: center; justify-content: space-between; gap: 22px; border-left: 8px solid var(--red) !important; }
+.home-continue p:last-child { margin-bottom: 0; color: var(--muted); }
+.home-primary-action { flex: 0 0 auto; padding: 12px 18px; background: var(--red); color: white; font-weight: 900; text-decoration: none; box-shadow: 3px 3px 0 #8b2924; }
+.home-primary-action:hover { background: var(--ink); color: white; }
+.home-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.home-grid a { display: grid; grid-template-columns: 42px 1fr; column-gap: 12px; padding: 17px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; box-shadow: 3px 3px 0 #d1c7b2; }
+.home-grid a:hover { transform: translate(-1px, -1px); border-color: var(--red); }
+.home-grid a > span { grid-row: 1 / span 2; display: grid; width: 38px; height: 38px; place-items: center; background: var(--blue); color: white; font-weight: 900; }
+.home-grid a:nth-child(2) > span, .home-grid a:nth-child(4) > span { background: var(--red); }
+.home-grid strong { align-self: end; }
+.home-grid small { color: var(--muted); }
+.home-recent { box-shadow: none !important; }
+.home-empty { padding: 18px 0 2px; color: var(--muted); }
+.home-activity-row { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px dashed var(--line); }
+.home-activity-row:first-child { margin-top: 15px; }
+.home-activity-row span { padding: 3px 5px; color: white; text-align: center; font-size: 12px; }
+.home-activity-row .good { background: var(--green); }
+.home-activity-row .retry { background: var(--red); }
+.home-activity-row time { color: var(--muted); font-size: 12px; }
+
 @media (min-width: 721px) and (max-width: 1179px) {
   body {
     max-width: calc(100vw - 154px) !important;
@@ -241,6 +279,13 @@ button.previous-word-button {
   .stage-map li { font-size: 12px; }
   button { margin: 6px 3px !important; }
   .challenge-options { grid-template-columns: 1fr; }
+  .home-stats div { padding-inline: 10px; }
+  .home-stats strong { font-size: 29px; }
+  .home-continue { align-items: stretch; flex-direction: column; }
+  .home-primary-action { text-align: center; }
+  .home-grid { grid-template-columns: 1fr; }
+  .home-activity-row { grid-template-columns: 46px 1fr; }
+  .home-activity-row time { grid-column: 2; }
 }
 
 @media (max-width: 720px) {
