@@ -4,8 +4,9 @@ const siteNavigationItems = [
     ["wordlist.html", "词库"],
     ["quiz.html", "练习"],
     ["pronunciation.html", "发音"],
-    ["characters.html", "字形"],
-    ["cha-chaan-teng.html", "在地"]
+    ["characters.html", "字形测试"],
+    ["cha-chaan-teng.html", "闯关测试"],
+    ["profile.html", "我的"]
 ];
 
 const currentPage = location.pathname.split("/").pop() || "index.html";

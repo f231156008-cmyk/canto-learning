@@ -5,11 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>粤语词汇学习</title>
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
 </head>
 
 <body>
     <h1>词汇闯关</h1>
+
+    <ol class="stage-map" aria-label="学习关卡">
+        <li class="active">选择路线</li>
+        <li>学习本组</li>
+        <li>系统考察</li>
+        <li>完成闯关</li>
+    </ol>
 
     <fieldset aria-label="学习路线">
         <label for="categoryFilter"><strong>主题</strong></label>
@@ -24,6 +32,8 @@
 
         <label for="groupFilter"><strong>关卡</strong></label>
         <select id="groupFilter"></select>
+
+        <a class="placement-link" href="placement-test.html">跳级测试</a>
     </fieldset>
 
     <p id="progress">正在加载……</p>
@@ -32,10 +42,7 @@
     <h2 id="word"></h2>
 
     <p><strong>粤拼</strong>　<span id="jyutping"></span></p>
-    <p><strong>释义</strong>　<span id="meaning"></span></p>
     <p><strong>例句</strong>　<span id="example"></span></p>
-    <button id="sentenceAudioButton" type="button">🔊 播放例句</button>
-    <audio id="sentenceAudio"></audio>
 
     <label for="voiceSelect"><strong>声音</strong></label>
     <select id="voiceSelect">
@@ -74,12 +81,8 @@
 
     <a href="Canto.html">返回主页</a>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="assets/js/supabase-config.js"></script>
-    <script src="assets/js/cloud-auth.js"></script>
-    <script src="assets/js/vocabulary.js"></script>
-<script src="assets/js/site-nav.js"></script></body>
+    <script src="vocabulary.js"></script>
+</body>
 
 </html>
-
 

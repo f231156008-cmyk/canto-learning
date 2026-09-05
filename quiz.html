@@ -122,8 +122,6 @@
         }
 
         #toneMarkWord { font-size: 40px; font-weight: bold; }
-        #toneMarkClue { white-space: pre-line; line-height: 1.65; }
-        #toneMarkResult { white-space: pre-line; line-height: 1.75; }
         #toneMarkInputs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .mark { display: grid; gap: 6px; font-size: 22px; }
         .mark select { padding: 8px; font-size: 16px; }
@@ -141,7 +139,8 @@
 
     </style>
 
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
 </head>
 
 
@@ -167,8 +166,8 @@
     </fieldset>
 
     <nav id="modeSelector" class="mode-selector" aria-label="选择题型">
-        <button class="active" data-mode="tone">标音调</button>
-        <button data-mode="full">粤拼打字</button>
+        <button class="active" data-mode="tone">粤拼补声调</button>
+        <button data-mode="full">粤拼打字（不计声调）</button>
     </nav>
 
     <section id="fullMode" class="quiz-mode" hidden>
@@ -215,8 +214,8 @@
 
     <!-- 下一题 -->
 
-    <button id="nextButton">
-        下一题
+    <button id="nextButton" hidden>
+        立即下一题
     </button>
 
 
@@ -235,7 +234,7 @@
 
     </section>
 
-    <section id="toneMode" class="tone-mark-section quiz-mode">
+    <section id="toneMode" class="tone-mark-section quiz-mode" hidden>
         <h2>看粤拼标音调</h2>
         <p id="toneMarkWord"></p>
         <p id="toneMarkClue"></p>
@@ -267,12 +266,6 @@
         <button id="generatedNext">换一题</button>
     </section>
 
-    <section id="completedQuestions" class="completed-questions">
-        <h2>做过的题</h2>
-        <p id="completedQuestionSummary">尚未完成题目。</p>
-        <div id="completedQuestionList"></div>
-    </section>
-
 
     <!-- 返回主页 -->
 
@@ -286,15 +279,11 @@
 
     <!-- 连接 JavaScript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="assets/js/supabase-config.js"></script>
-    <script src="assets/js/cloud-auth.js"></script>
-    <script src="assets/js/quiz.js"></script>
-    <script src="assets/js/quiz-modes.js"></script>
+    <script src="quiz.js"></script>
+    <script src="quiz-modes.js"></script>
 
 
-<script src="assets/js/site-nav.js"></script></body>
+</body>
 
 </html>
-
 

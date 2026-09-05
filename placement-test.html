@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跳级测试｜粤语学习</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="placement-page">
+<h1>跳级测试</h1>
+
+<section id="placementSetup" class="placement-card">
+  <label for="placementLevel"><strong>等级</strong></label>
+  <select id="placementLevel"></select>
+  <button id="placementStart" type="button">开始测试</button>
+  <p id="placementPrevious"></p>
+</section>
+
+<section id="placementQuiz" class="placement-card" hidden>
+  <div class="placement-progress"><span id="placementCount"></span><span id="placementScore"></span></div>
+  <div class="placement-track"><i id="placementFill"></i></div>
+  <p id="placementType"></p>
+  <h2 id="placementPrompt"></h2>
+  <p id="placementContext"></p>
+  <button id="placementReplay" type="button" hidden>🔊 播放</button>
+  <div id="placementOptions" class="placement-options"></div>
+  <p id="placementFeedback" aria-live="polite"></p>
+</section>
+
+<section id="placementResult" class="placement-card" hidden>
+  <h2 id="placementResultTitle"></h2>
+  <p id="placementResultScore"></p>
+  <p id="placementResultStatus"></p>
+  <button id="placementRetry" type="button">再试一次</button>
+  <a class="placement-return" href="vocabulary.html">返回词汇学习</a>
+</section>
+
+<audio id="placementAudio"></audio>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="site.js"></script>
+<script src="placement-test.js"></script>
+</body>
+</html>

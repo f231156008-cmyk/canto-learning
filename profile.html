@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人主页｜粤语学习</title>
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+</head>
+<body>
+<main>
+  <header class="page-heading profile-heading">
+    <h1>我的</h1>
+  </header>
+  <section class="account-section" aria-labelledby="accountTitle">
+    <div class="account-heading">
+      <div>
+        <h2 id="accountTitle">登录</h2>
+      </div>
+      <span id="accountState" class="account-state">未登录</span>
+    </div>
+    <form id="loginForm" class="login-form">
+      <label for="loginEmail">邮箱</label>
+      <div class="login-row">
+        <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+        <button id="loginButton" type="submit">发送登录链接</button>
+      </div>
+      <p id="loginMessage" class="quiet" role="status">不用设置密码，登录链接会发送到你的邮箱。</p>
+    </form>
+    <div id="signedInPanel" class="signed-in-panel" hidden>
+      <p>已登录：<strong id="accountEmail"></strong></p>
+      <button id="logoutButton" type="button">退出登录</button>
+    </div>
+  </section>
+  <section class="profile-stats plain-section" aria-label="学习统计">
+    <div><strong id="attemptCount">0</strong><span>答题</span></div>
+    <div><strong id="accuracyRate">—</strong><span>正确率</span></div>
+    <div><strong id="wrongCount">0</strong><span>错题</span></div>
+    <div><strong id="masteredCharCount">0</strong><span>已掌握汉字</span></div>
+  </section>
+  <div class="profile-columns">
+    <section class="plain-section">
+      <h2>最近进度</h2>
+      <dl class="profile-list">
+        <div><dt>词汇主题</dt><dd id="lastCategory">未选择</dd></div>
+        <div><dt>词汇难度</dt><dd id="lastLevel">未选择</dd></div>
+        <div><dt>练习主题</dt><dd id="quizCategory">全部主题</dd></div>
+        <div><dt>发音声音</dt><dd id="voiceChoice">未选择</dd></div>
+      </dl>
+    </section>
+    <section class="plain-section">
+      <h2>记录</h2>
+      <a class="index-row" href="records.html"><strong>练习记录</strong><span>查看错题与所有答题</span><b>→</b></a>
+      <a class="index-row" href="vocabulary.html"><strong>词汇学习</strong><span>继续上次路线</span><b>→</b></a>
+      <a class="index-row" href="wordlist.html"><strong>词库浏览</strong><span>释义、例句与音频</span><b>→</b></a>
+      <a class="index-row" href="characters.html"><strong>汉字学习</strong><span>继续书写与字形练习</span><b>→</b></a>
+    </section>
+  </div>
+</main>
+<script src="profile.js"></script>
+</body>
+</html>

@@ -1,25 +1,48 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-Hant">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>粤语学习网</title><link rel="stylesheet" href="assets/css/site.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粤语学习</title>
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
 </head>
+
+
 <body class="home-page">
-<header class="home-masthead"><p class="home-kicker" id="homeDate"></p><h1 id="dailyLibraryLine">城市的声音，留在每一个学会开口的人身上。</h1><p id="dailyLibrarySource" class="home-greeting">原创测试句 · 首页句库</p></header>
-<main>
-<section class="home-progress-card" aria-labelledby="progressTitle">
-  <div class="home-card-heading"><div><p class="home-label">学习进度</p><h2 id="progressTitle">你的学习册</h2></div><span id="progressSource" class="home-source">本机记录</span></div>
-  <div class="home-stats"><div><strong id="masteredCount">0</strong><span>已学词汇</span></div><div><strong id="accuracyRate">—</strong><span>练习正确率</span></div><div><strong id="studyDays">0</strong><span>有记录天数</span></div></div>
-  <div class="home-progress-track" aria-hidden="true"><i id="homeProgressFill"></i></div><p id="progressNote" class="home-progress-note">正在整理学习记录……</p>
-</section>
-<section class="home-continue" aria-labelledby="continueTitle"><div><p class="home-label">下一站</p><h2 id="continueTitle">继续词汇闯关</h2><p id="continueNote">从上次选择的主题和难度继续。</p></div><a class="home-primary-action" href="vocabulary.html">继续学习 →</a></section>
-<section class="home-grid" aria-label="学习入口">
-  <a href="quiz.html"><span>练</span><strong>做一组练习</strong><small>粤拼与声调</small></a>
-  <a href="wordlist.html"><span>查</span><strong>翻阅词库</strong><small>主题、难度与例句</small></a>
-  <a href="pronunciation.html"><span>听</span><strong>温习发音</strong><small>声母、韵母与六声</small></a>
-  <a href="cha-chaan-teng.html"><span>行</span><strong>香港在地闯关</strong><small>把词放进生活里</small></a>
-</section>
-<section class="home-recent" aria-labelledby="recentTitle"><div class="home-card-heading"><div><p class="home-label">最近</p><h2 id="recentTitle">学习记录</h2></div></div><div id="recentActivity" class="home-empty">还没有答题记录，今天来做第一题吧。</div></section>
+<main class="home-main">
+  <header class="home-heading">
+    <h1>今日学习</h1>
+  </header>
+
+  <div class="home-lead-grid home-lead-single">
+    <section class="continue-section plain-section">
+      <h2 id="continueTitle">词汇闯关</h2>
+      <a class="text-action" href="vocabulary.html">继续 →</a>
+    </section>
+
+  </div>
+
+  <div class="home-index">
+    <section class="plain-section">
+      <h2>学习</h2>
+      <a class="index-row" href="vocabulary.html"><strong>词汇学习</strong><b>→</b></a>
+      <a class="index-row" href="pronunciation.html"><strong>发音学习</strong><b>→</b></a>
+      <a class="index-row" href="characters.html"><strong>繁体字形（测试）</strong><b>→</b></a>
+      <a class="index-row" href="quiz.html"><strong>练习测试</strong><b>→</b></a>
+    </section>
+
+    <section class="plain-section">
+      <h2>资料与练习</h2>
+      <a class="index-row" href="wordlist.html"><strong>词库浏览</strong><b>→</b></a>
+      <a class="index-row" href="cha-chaan-teng.html"><strong>香港在地闯关（测试）</strong><b>→</b></a>
+      <a class="index-row" href="records.html"><strong>练习记录</strong><b>→</b></a>
+      <a class="index-row" href="profile.html"><strong>个人主页</strong><b>→</b></a>
+    </section>
+  </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="assets/js/supabase-config.js"></script><script src="assets/js/cloud-auth.js"></script><script src="assets/js/home.js"></script><script src="assets/js/site-nav.js"></script>
-</body></html>
+</body>
+
+</html>
+

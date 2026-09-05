@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>练习记录｜粤语学习</title>
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+</head>
+<body>
+<main>
+  <header class="page-heading">
+    <p class="eyebrow">练习记录</p>
+    <h1>错题与做过的题</h1>
+  </header>
+  <nav class="record-tabs" aria-label="记录筛选">
+    <button class="active" data-record-filter="all" type="button">全部</button>
+    <button data-record-filter="wrong" type="button">错题</button>
+    <button data-record-filter="correct" type="button">答对</button>
+  </nav>
+  <p id="recordSummary" class="quiet"></p>
+  <div id="recordList" class="record-list"></div>
+  <div id="recordEmpty" class="empty-state" hidden>
+    <p>这里还没有记录。</p>
+    <a class="text-action" href="quiz.html">开始练习　→</a>
+  </div>
+</main>
+<script src="records.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@ if (savedVoice === "female" || savedVoice === "male") {
 }
 
 function difficultyName(value) {
-    return { 1: "入门", 2: "初级", 3: "中级" }[value] || `等级 ${value}`;
+    return { 1: "入门", 2: "初级", 3: "中级", 4: "高级" }[value] || `等级 ${value}`;
 }
 
 function createLine(label, value) {

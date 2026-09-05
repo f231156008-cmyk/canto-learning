@@ -17,6 +17,26 @@ let currentAnswered = false;
 let previousIndex = -1;
 let typingBlank = null;
 let forcedTypingQuestionId = null;
+let automaticAdvanceTimer = null;
+let questionVersion = 0;
+
+function cancelAutomaticAdvance() {
+    if (automaticAdvanceTimer) window.clearTimeout(automaticAdvanceTimer);
+    automaticAdvanceTimer = null;
+}
+
+function scheduleAutomaticAdvance(callback, delay) {
+    cancelAutomaticAdvance();
+    automaticAdvanceTimer = window.setTimeout(callback, delay);
+}
+
+function animateQuestion(id) {
+    const panel = document.getElementById(id);
+    panel?.animate?.([
+        { opacity: 0, transform: "translateY(8px)" },
+        { opacity: 1, transform: "translateY(0)" }
+    ], { duration: 180, easing: "ease-out" });
+}
 
 
 // 保存发音声音偏好
@@ -144,6 +164,8 @@ async function loadWords() {
 // ========================================
 
 function showRandomQuestion() {
+    cancelAutomaticAdvance();
+    questionVersion += 1;
 
 
     if (words.length === 0) {
@@ -202,6 +224,9 @@ function showRandomQuestion() {
         availableWords[randomIndex];
     forcedTypingQuestionId = null;
     currentAnswered = false;
+    document.getElementById("nextButton").hidden = true;
+    document.getElementById("submitButton").disabled = false;
+    document.getElementById("answerInput").disabled = false;
 
     const typingSyllables = currentQuestion.jyutping.trim().split(/\s+/);
     const blankIndex = Math.floor(Math.random() * typingSyllables.length);
@@ -253,6 +278,8 @@ function showRandomQuestion() {
     document
         .getElementById("answerInput")
         .focus();
+
+    animateQuestion("fullMode");
 
 }
 
@@ -317,6 +344,9 @@ function checkAnswer() {
     // 判断正确与否
     const isCorrect = normalizeWithoutTone(userAnswer) === normalizeWithoutTone(typingBlank.base);
     currentAnswered = true;
+    document.getElementById("submitButton").disabled = true;
+    document.getElementById("answerInput").disabled = true;
+    document.getElementById("nextButton").hidden = false;
 
     if (isCorrect) {
 
@@ -338,7 +368,7 @@ function checkAnswer() {
     // 无论正确还是错误
     // 都显示完整解析
 
-    showAnalysis(userAnswer);
+    showAnalysis(userAnswer, isCorrect, questionVersion);
     saveQuizAttempt(userAnswer, `${typingBlank.base}${typingBlank.tone}`, isCorrect);
 
 }
@@ -459,9 +489,7 @@ document.getElementById("completedQuestionList").addEventListener("click", event
 // 4. 显示答案解析
 // ========================================
 
-function showAnalysis(
-    userAnswer
-) {
+function showAnalysis(userAnswer, isCorrect, answeredVersion) {
 
 
     const analysis =
@@ -541,8 +569,13 @@ function showAnalysis(
     const audioSource =
         `audio/${currentQuestion.audio[voiceSelect.value]}`;
 
-    audioButton.addEventListener("click", playAudio);
-    playAudio();
+    audioButton.addEventListener("click", () => playAudio());
+    playAudio(() => {
+        if (questionVersion !== answeredVersion) return;
+        scheduleAutomaticAdvance(() => {
+            if (questionVersion === answeredVersion) showRandomQuestion();
+        }, isCorrect ? 650 : 1800);
+    });
 
     fetch(audioSource, { method: "HEAD" })
         .then(function(response) {
@@ -563,7 +596,7 @@ function showAnalysis(
 // 5. 播放 MP3
 // ========================================
 
-function playAudio() {
+function playAudio(afterPlayback) {
 
 
     const audio =
@@ -575,20 +608,24 @@ function playAudio() {
     audio.currentTime = 0;
 
 
-    audio
-        .play()
-        .catch(function(error) {
+    let finished = false;
+    const finish = () => {
+        if (finished) return;
+        finished = true;
+        audio.onended = null;
+        if (typeof afterPlayback === "function") afterPlayback();
+    };
+    audio.onended = finish;
+    audio.play().catch(function(error) {
 
             console.error(
                 "音频播放失败：",
                 error
             );
 
-            alert(
-                "音频无法播放，请检查 MP3 文件名和 audio 文件夹。"
-            );
-
+            finish();
         });
+    if (typeof afterPlayback === "function") window.setTimeout(finish, 3500);
 
 }
 
@@ -672,6 +709,8 @@ function showToneMarkStats() {
 }
 
 function showToneMarkQuestion(retry = false, specificId = null) {
+    cancelAutomaticAdvance();
+    questionVersion += 1;
     if (!words.length) return;
     const retryPool = retry && toneMarkStats.bad.length ? words.filter(w => toneMarkStats.bad.includes(w.id)) : [];
     const completedIds = getCompletedWordIds("tone_mark");
@@ -696,12 +735,18 @@ function showToneMarkQuestion(retry = false, specificId = null) {
         toneMarkQuestion.pronunciationNote || ""
     ].filter(Boolean).join("\n");
     document.getElementById("toneMarkInputs").innerHTML = toneParts(toneMarkQuestion.jyutping).map((part, i) => `<label class="mark">${part.base}<select data-tone-mark="${i}"><option value="">声调</option>${[1,2,3,4,5,6].map(n => `<option>${n}</option>`).join("")}</select></label>`).join("");
+    document.querySelectorAll("[data-tone-mark]").forEach(input => input.addEventListener("change", () => {
+        const inputs = [...document.querySelectorAll("[data-tone-mark]")];
+        if (inputs.length && inputs.every(item => item.value)) checkToneMarkAnswer();
+    }));
     document.getElementById("toneMarkResult").textContent = "";
     document.getElementById("toneMarkSaveStatus").textContent = "";
     document.getElementById("toneMarkReplay").hidden = true;
     document.getElementById("checkToneMark").disabled = false;
+    document.getElementById("newToneMark").hidden = true;
     toneMarkAudio.pause();
     showToneMarkStats();
+    animateQuestion("toneMode");
 }
 
 async function checkToneMarkAnswer() {
@@ -714,7 +759,9 @@ async function checkToneMarkAnswer() {
         return;
     }
     toneMarkAnswered = true;
+    const answeredVersion = questionVersion;
     document.getElementById("checkToneMark").disabled = true;
+    document.getElementById("newToneMark").hidden = false;
     document.querySelectorAll("[data-tone-mark]").forEach(input => { input.disabled = true; });
     const correct = wanted.every((x, i) => x === selected[i]);
     toneMarkStats.total++;
@@ -741,14 +788,19 @@ async function checkToneMarkAnswer() {
         example,
         pronunciationNote
     ].filter(Boolean).join("\n");
-    playToneMarkAudio();
+    playToneMarkAudio(() => {
+        if (questionVersion !== answeredVersion) return;
+        scheduleAutomaticAdvance(() => {
+            if (questionVersion === answeredVersion) showToneMarkQuestion();
+        }, correct ? 650 : 2200);
+    });
     document.getElementById("toneMarkReplay").hidden = false;
     showToneMarkStats();
     saveStandaloneAttempt({ quizType: "tone_mark", wordId: toneMarkQuestion.id, prompt: toneMarkQuestion.word, answer: selected.join("-"), correctAnswer: wanted.join("-"), isCorrect: correct });
     document.getElementById("toneMarkSaveStatus").textContent = "本题记录已保存在此浏览器。";
 }
 
-function playToneMarkAudio() {
+function playToneMarkAudio(afterPlayback) {
     if (!toneMarkQuestion || !toneMarkQuestion.audio) return;
     const useSentenceAudio = toneMarkQuestion.audioStatus === "needs_review" && toneMarkQuestion.sentenceAudio?.[voiceSelect.value];
     const audioFile = useSentenceAudio
@@ -756,9 +808,19 @@ function playToneMarkAudio() {
         : toneMarkQuestion.audio[voiceSelect.value];
     toneMarkAudio.src = `audio/${audioFile}`;
     toneMarkAudio.currentTime = 0;
+    let finished = false;
+    const finish = () => {
+        if (finished) return;
+        finished = true;
+        toneMarkAudio.onended = null;
+        if (typeof afterPlayback === "function") afterPlayback();
+    };
+    toneMarkAudio.onended = finish;
     toneMarkAudio.play().catch(() => {
         document.getElementById("toneMarkSaveStatus").textContent = "录音暂时无法播放。";
+        finish();
     });
+    if (typeof afterPlayback === "function") window.setTimeout(finish, 3500);
     if (useSentenceAudio) {
         document.getElementById("toneMarkSaveStatus").textContent = "单字录音待校对；当前播放含目标词的例句。";
     }

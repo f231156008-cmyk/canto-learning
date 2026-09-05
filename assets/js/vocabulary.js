@@ -1,6 +1,28 @@
 const GROUP_SIZE = 5;
 let allWords = [], groups = [], words = [], studyIndex = 0, challengeIndex = 0, challengeWords = [];
-let remoteProgress = new Map();
+let remoteProgress = readLocalProgress();
+
+function readLocalProgress() {
+    try {
+        const saved = JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}");
+        return new Map(Object.entries(saved).map(([wordId, status]) => [Number(wordId), status]));
+    } catch { return new Map(); }
+}
+
+function routeKey() {
+    return `${elements.categoryFilter.value || "all"}||${elements.levelFilter.value || "all"}`;
+}
+
+function readRouteSessions() {
+    try { return JSON.parse(localStorage.getItem("cantoVocabularyRoutes") || "{}"); }
+    catch { return {}; }
+}
+
+function saveRoutePosition(groupIndex, wordIndex = 0) {
+    const sessions = readRouteSessions();
+    sessions[routeKey()] = { groupIndex, wordIndex, updatedAt: Date.now() };
+    localStorage.setItem("cantoVocabularyRoutes", JSON.stringify(sessions));
+}
 
 const elements = {};
 ["progress", "word", "jyutping", "meaning", "example", "voiceSelect", "audioButton", "wordAudio", "sentenceAudioButton", "sentenceAudio", "previousButton", "continueButton", "message", "categoryFilter", "levelFilter", "groupFilter", "syncStatus", "progressSummary", "studyPanel", "challengePanel", "completePanel", "challengeType", "challengeWord", "challengeOptions", "challengeFeedback", "completeSummary", "nextGroupButton", "repeatGroupButton"].forEach(id => { elements[id] = document.getElementById(id); });
@@ -69,16 +91,26 @@ function buildGroups() {
         elements.progress.textContent = "当前路线没有可用关卡";
         return;
     }
-    startGroup(0);
+    const saved = readRouteSessions()[routeKey()];
+    const firstIncomplete = groups.findIndex(group => group.items.some(item => remoteProgress.get(item.id) !== "mastered"));
+    const savedIndex = Number(saved?.groupIndex);
+    const canResumeSaved = Number.isInteger(savedIndex) && groups[savedIndex]
+        && groups[savedIndex].items.some(item => remoteProgress.get(item.id) !== "mastered");
+    const resumeIndex = canResumeSaved ? savedIndex : firstIncomplete >= 0 ? firstIncomplete : Math.max(0, groups.length - 1);
+    startGroup(resumeIndex, true);
 }
 
-function startGroup(groupIndex) {
+function startGroup(groupIndex, resume = false) {
     const group = groups[groupIndex];
     if (!group) return;
     elements.groupFilter.value = String(groupIndex);
     words = group.items;
-    studyIndex = 0;
+    const saved = readRouteSessions()[routeKey()];
+    studyIndex = resume && Number(saved?.groupIndex) === groupIndex
+        ? Math.min(Math.max(Number(saved.wordIndex) || 0, 0), words.length - 1)
+        : 0;
     challengeIndex = 0;
+    saveRoutePosition(groupIndex, studyIndex);
     showPhase("study");
     showStudyWord();
     renderGroupProgress();
@@ -97,6 +129,7 @@ function showPhase(phase) {
 async function showStudyWord() {
     const item = words[studyIndex];
     const group = groups[Number(elements.groupFilter.value)];
+    saveRoutePosition(Number(elements.groupFilter.value), studyIndex);
     elements.progress.textContent = `${group.label}｜学习 ${studyIndex + 1}/${words.length}`;
     elements.word.textContent = item.word;
     elements.jyutping.textContent = item.jyutping;
@@ -201,6 +234,8 @@ async function finishGroup() {
     const savedProgress = JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}");
     words.forEach(item => { savedProgress[item.id] = "mastered"; });
     localStorage.setItem("cantoStandaloneProgress", JSON.stringify(savedProgress));
+    const currentGroupIndex = Number(elements.groupFilter.value);
+    saveRoutePosition(Math.min(currentGroupIndex + 1, groups.length - 1), 0);
     const cloudResults = window.CantoCloud
         ? await Promise.allSettled(words.map(item => window.CantoCloud.saveProgress(item.id, "mastered", null)))
         : [];
@@ -248,7 +283,7 @@ elements.sentenceAudioButton.addEventListener("click", () => { elements.sentence
 elements.voiceSelect.addEventListener("change", () => { localStorage.setItem("cantoVoice", elements.voiceSelect.value); showStudyWord(); });
 elements.categoryFilter.addEventListener("change", buildGroups);
 elements.levelFilter.addEventListener("change", buildGroups);
-elements.groupFilter.addEventListener("change", () => startGroup(Number(elements.groupFilter.value)));
+elements.groupFilter.addEventListener("change", () => startGroup(Number(elements.groupFilter.value), false));
 elements.nextGroupButton.addEventListener("click", () => startGroup(Number(elements.groupFilter.value) + 1));
 elements.repeatGroupButton.addEventListener("click", () => startGroup(Number(elements.groupFilter.value)));
 
