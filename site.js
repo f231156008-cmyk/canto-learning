@@ -97,7 +97,7 @@
     const current = location.pathname.split("/").pop() || "Canto.html";
     const header = document.createElement("header");
     header.className = "site-header";
-    header.innerHTML = `<a class="site-name" href="Canto.html">粵語學習</a><nav class="site-nav" aria-label="主导航">${pages.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="site-tools"><button class="language-toggle" type="button" aria-label="切换简体或繁体中文">简</button><span class="sync-indicator">本地保存</span></div>`;
+    header.innerHTML = `<a class="site-name" href="Canto.html">粵語</a><nav class="site-nav" aria-label="主导航">${pages.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="site-tools"><button class="language-toggle" type="button" aria-label="切换简体或繁体中文">简</button><span class="sync-indicator">本地保存</span></div>`;
     document.body.prepend(header);
   }
 
@@ -118,7 +118,7 @@
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
         acceptNode(node) {
           const parent = node.parentElement;
-          if (!parent || ["SCRIPT", "STYLE", "TEXTAREA"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+          if (!parent || parent.closest("[data-no-convert]") || ["SCRIPT", "STYLE", "TEXTAREA"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
           return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
         }
       });
@@ -126,11 +126,13 @@
       while (walker.nextNode()) nodes.push(walker.currentNode);
       nodes.forEach(node => { node.nodeValue = converter(node.nodeValue); });
       document.querySelectorAll("[placeholder], [title], [aria-label]").forEach(element => {
+        if (element.closest("[data-no-convert]")) return;
         ["placeholder", "title", "aria-label"].forEach(attribute => {
           if (element.hasAttribute(attribute)) element.setAttribute(attribute, converter(element.getAttribute(attribute)));
         });
       });
       document.documentElement.lang = language === "zh-Hans" ? "zh-CN" : "zh-HK";
+      document.querySelectorAll("[data-no-convert]").forEach(element => element.setAttribute("lang", "zh-HK"));
       button.textContent = language === "zh-Hans" ? "繁" : "简";
       button.title = language === "zh-Hans" ? "切换至繁体中文" : "切换至简体中文";
       if (observer) observer.observe(document.body, { childList: true, subtree: true, characterData: true });
@@ -151,11 +153,23 @@
     if (category || level) {
       document.getElementById("continueTitle").textContent = [category, level].filter(Boolean).join(" · ");
     }
-    const due = window.cantoSrs.stats().due;
+    const srsStats = window.cantoSrs.stats();
+    const due = srsStats.due;
     const dueCount = document.getElementById("homeDueCount");
     if (dueCount) dueCount.textContent = String(due);
     const reviewLink = document.getElementById("homeReviewLink");
     if (reviewLink) reviewLink.textContent = due ? `开始复习 ${due} 词 →` : "暂无待复习 →";
+
+    const attempts = (() => { try { return JSON.parse(localStorage.getItem("cantoAttempts") || "[]"); } catch (_error) { return []; } })();
+    const correct = attempts.filter(item => item.isCorrect).length;
+    const setText = (id, value) => { const element = document.getElementById(id); if (element) element.textContent = String(value); };
+    setText("dashboardLearned", srsStats.total);
+    setText("dashboardDue", due);
+    setText("dashboardAttempts", attempts.length);
+    setText("dashboardAccuracy", attempts.length ? `${Math.round(correct / attempts.length * 100)}%` : "—");
+    setText("dashboardMemoryText", `${srsStats.mature} / ${srsStats.total}`);
+    const memoryBar = document.getElementById("dashboardMemoryBar");
+    if (memoryBar) memoryBar.style.width = `${srsStats.total ? Math.round(srsStats.mature / srsStats.total * 100) : 0}%`;
 
   }
 
