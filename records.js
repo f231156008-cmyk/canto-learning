@@ -6,7 +6,7 @@
     quiz: "练习",
     placement_test: "跳级测试",
     local_challenge: "闯关",
-    srs_review: "间隔复习"
+    srs_review: "练习"
   };
   let records = JSON.parse(localStorage.getItem("cantoAttempts") || "[]");
   const list = document.getElementById("recordList");

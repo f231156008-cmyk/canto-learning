@@ -26,12 +26,13 @@
   }
 
   function plainJyutping(value) { return value.toLowerCase().replace(/[1-6]/g, "").replace(/\s+/g, " ").trim(); }
+  function toneVariant(value, offset) { return value.split(/\s+/).map((part, i) => part.replace(/[1-6]$/, tone => String(((Number(tone) - 1 + offset + i) % 6) + 1))).join(" "); }
   function finish() { byId("reviewSession").hidden = true; byId("reviewEmpty").hidden = false; }
 
   function render() {
     if (index >= queue.length) return finish();
     answered = false;
-    const item = queue[index], mode = index % 3;
+    const item = queue[index], mode = index % 4;
     byId("reviewCount").textContent = `${Math.min(index + 1, initialTotal)} / ${initialTotal}`;
     byId("reviewScore").textContent = `${correctCount} 答对`;
     byId("reviewFeedback").innerHTML = "";
@@ -43,7 +44,8 @@
     byId("reviewForm").hidden = mode !== 2;
     if (mode === 0) { byId("reviewType").textContent = "选择粤拼"; choices(item, item.jyutping, shuffle([item.jyutping, ...related(item, "jyutping")])); }
     else if (mode === 1) { byId("reviewType").textContent = "听音选词"; choices(item, item.word, shuffle([item.word, ...related(item, "word")])); audio(item); }
-    else { byId("reviewType").textContent = "输入粤拼（不用声调）"; byId("reviewInput").value = ""; byId("reviewInput").focus(); }
+    else if (mode === 2) { byId("reviewType").textContent = "输入粤拼（不用声调）"; byId("reviewInput").value = ""; byId("reviewInput").focus(); }
+    else { byId("reviewType").textContent = `选择声调 · ${plainJyutping(item.jyutping)}`; choices(item, item.jyutping, shuffle([item.jyutping, toneVariant(item.jyutping, 1), toneVariant(item.jyutping, 2), toneVariant(item.jyutping, 4)])); }
   }
 
   function choices(item, wanted, options) {

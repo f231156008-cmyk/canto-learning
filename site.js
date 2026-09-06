@@ -42,7 +42,7 @@
 
   const pages = [
     ["Canto.html", "首页"], ["pronunciation.html", "发音"], ["vocabulary.html", "词汇"],
-    ["quiz.html", "练习"], ["characters.html", "字形测试"],
+    ["review.html", "练习"], ["characters.html", "字形测试"],
     ["cha-chaan-teng.html", "闯关测试"], ["wordlist.html", "词库"], ["profile.html", "我的"]
   ];
 
@@ -110,7 +110,7 @@
     const dueCount = document.getElementById("homeDueCount");
     if (dueCount) dueCount.textContent = String(due);
     const reviewLink = document.getElementById("homeReviewLink");
-    if (reviewLink) reviewLink.textContent = due ? `开始复习 ${due} 词 →` : "暂无待复习 →";
+    if (reviewLink) reviewLink.textContent = due ? `开始练习 ${due} 词 →` : "暂无待练习 →";
 
   }
 
