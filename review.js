@@ -4,7 +4,8 @@
   const response = await fetch("words.json");
   const words = await response.json();
   const byWordId = new Map(words.map(item => [Number(item.id), item]));
-  let queue = window.cantoSrs.due().map(item => byWordId.get(Number(item.wordId))).filter(Boolean).slice(0, 20);
+  const previewMode = new URLSearchParams(location.search).has("preview");
+  let queue = previewMode ? words.slice(0, 3) : window.cantoSrs.due().map(item => byWordId.get(Number(item.wordId))).filter(Boolean).slice(0, 20);
   let index = 0, correctCount = 0, answered = false;
   const initialTotal = queue.length;
   const player = byId("reviewPlayer");
@@ -53,7 +54,7 @@
     if (answered) return;
     answered = true;
     if (correct) correctCount += 1; else if (!item._retried) { item._retried = true; queue.push(item); }
-    window.cantoRecordAttempt({ type: "srs_review", wordId: item.id, prompt: item.word, answer: value, correctAnswer: wanted, isCorrect: correct });
+    if (!previewMode) window.cantoRecordAttempt({ type: "srs_review", wordId: item.id, prompt: item.word, answer: value, correctAnswer: wanted, isCorrect: correct });
     audio(item);
     byId("reviewOptions").querySelectorAll("button").forEach(button => { button.disabled = true; if (button.textContent === wanted) button.classList.add("correct-answer"); });
     byId("reviewFeedback").innerHTML = `<strong>${correct ? "正确" : `答案：${wanted}`}</strong><span>${item.meaning || ""}</span><p>${item.example || ""}</p><button type="button" id="reviewReplay">重新播放</button>`;
