@@ -42,7 +42,7 @@
 
   const pages = [
     ["Canto.html", "首页"], ["pronunciation.html", "发音"], ["vocabulary.html", "词汇"],
-    ["sentence-patterns.html", "语法"], ["review.html", "练习"], ["characters.html", "字形测试"],
+    ["sentence-patterns.html", "句式"], ["review.html", "练习"], ["characters.html", "字形测试"],
     ["cha-chaan-teng.html", "闯关测试"], ["wordlist.html", "词库"], ["profile.html", "我的"]
   ];
 
