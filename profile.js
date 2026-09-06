@@ -6,20 +6,30 @@
     const total = attempts.length || Number(legacy.total) || 0;
     const correct = attempts.length ? attempts.filter(item => item.isCorrect).length : Number(legacy.right) || 0;
     const wrong = attempts.length ? attempts.length - correct : (Array.isArray(legacy.bad) ? legacy.bad.length : 0);
-    document.getElementById("attemptCount").textContent = total;
-    document.getElementById("accuracyRate").textContent = total ? `${Math.round(correct / total * 100)}%` : "—";
-    document.getElementById("wrongCount").textContent = wrong;
-    document.getElementById("masteredCharCount").textContent = masteredChars.length;
-    const srsStats = window.cantoSrs?.stats?.() || { total: 0, due: 0 };
-    document.getElementById("srsTotalCount").textContent = srsStats.total;
-    document.getElementById("srsDueCount").textContent = srsStats.due;
+    const setText = (id, value) => { const element = document.getElementById(id); if (element) element.textContent = value; };
+    setText("attemptCount", total);
+    setText("accuracyRate", total ? `${Math.round(correct / total * 100)}%` : "—");
+    setText("wrongCount", wrong);
+    setText("masteredCharCount", masteredChars.length);
+    const recentList = document.getElementById("recentLearningList");
+    if (recentList) {
+      const recent = attempts.slice(0, 5);
+      recentList.replaceChildren();
+      if (!recent.length) {
+        const empty = document.createElement("li");
+        empty.className = "is-empty";
+        empty.textContent = "暂无记录";
+        recentList.appendChild(empty);
+      } else {
+        recent.forEach(item => {
+          const row = document.createElement("li");
+          row.textContent = item.prompt || item.correctAnswer || "练习";
+          recentList.appendChild(row);
+        });
+      }
+    }
   }
   renderStats();
-  document.getElementById("lastCategory").textContent = localStorage.getItem("cantoLearningCategory") || "未选择";
-  document.getElementById("lastLevel").textContent = localStorage.getItem("cantoLearningLevel") || "未选择";
-  document.getElementById("quizCategory").textContent = localStorage.getItem("cantoQuizCategory") || "全部主题";
-  const voice = localStorage.getItem("cantoVoice");
-  document.getElementById("voiceChoice").textContent = voice === "female" ? "女声" : voice === "male" ? "男声" : "未选择";
 
   const loginForm = document.getElementById("loginForm");
   const loginButton = document.getElementById("loginButton");
