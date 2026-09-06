@@ -120,10 +120,6 @@ function showPhase(phase) {
     elements.studyPanel.hidden = phase !== "study";
     elements.challengePanel.hidden = phase !== "challenge";
     elements.completePanel.hidden = phase !== "complete";
-    document.querySelectorAll(".stage-map li").forEach((item, index) => {
-        const activeUntil = phase === "study" ? 1 : phase === "challenge" ? 2 : 3;
-        item.classList.toggle("active", index <= activeUntil);
-    });
 }
 
 async function showStudyWord() {

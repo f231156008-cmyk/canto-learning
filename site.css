@@ -67,49 +67,6 @@ label { display: inline-block; margin: 8px 6px 8px 0; }
   letter-spacing: .045em;
 }
 
-.stage-map {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin: 24px 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: stage;
-}
-.stage-map li {
-  position: relative;
-  padding: 48px 8px 8px;
-  color: var(--muted);
-  text-align: center;
-  font-weight: 700;
-}
-.stage-map li::before {
-  counter-increment: stage;
-  content: counter(stage);
-  position: absolute;
-  top: 4px;
-  left: 50%;
-  z-index: 2;
-  width: 34px;
-  height: 34px;
-  transform: translateX(-50%);
-  border: 3px solid var(--line);
-  border-radius: 50%;
-  background: var(--paper);
-  line-height: 28px;
-}
-.stage-map li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 58%;
-  width: 84%;
-  height: 3px;
-  background: var(--line);
-}
-.stage-map li.active { color: var(--red); }
-.stage-map li.active::before { border-color: var(--red); background: var(--red); color: white; }
-
 .route-status {
   display: inline-block;
   margin: 8px 0 18px;
@@ -179,7 +136,6 @@ button.previous-word-button {
 @media (max-width: 620px) {
   body { border: 0; }
   fieldset label, fieldset select { display: block; width: 100%; }
-  .stage-map li { font-size: 12px; }
   button { margin: 6px 3px !important; }
   .challenge-options { grid-template-columns: 1fr; }
 }
@@ -287,8 +243,6 @@ article,
 
 fieldset { border-top: 1px solid #222 !important; }
 legend { background: #faf9f6; }
-.stage-map { margin-block: 18px 38px; }
-.stage-map li::before { background: #faf9f6; }
 
 .home-page { max-width: none !important; padding-inline: clamp(24px, 5vw, 72px) !important; }
 .home-page .site-header { margin-bottom: 48px; }
