@@ -167,9 +167,16 @@
     setText("dashboardDue", due);
     setText("dashboardAttempts", attempts.length);
     setText("dashboardAccuracy", attempts.length ? `${Math.round(correct / attempts.length * 100)}%` : "—");
-    setText("dashboardMemoryText", `${srsStats.mature} / ${srsStats.total}`);
+    const wordProgress = (() => { try { return JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}"); } catch (_error) { return {}; } })();
+    const completed = Object.values(wordProgress).filter(status => status === "mastered").length;
+    setText("dashboardMemoryText", `${completed} / 0`);
     const memoryBar = document.getElementById("dashboardMemoryBar");
-    if (memoryBar) memoryBar.style.width = `${srsStats.total ? Math.round(srsStats.mature / srsStats.total * 100) : 0}%`;
+    if (memoryBar) memoryBar.style.width = "0%";
+    fetch("words.json").then(response => response.ok ? response.json() : []).then(words => {
+      const total = Array.isArray(words) ? words.length : 0;
+      setText("dashboardMemoryText", `${completed} / ${total}`);
+      if (memoryBar) memoryBar.style.width = `${total ? Math.round(completed / total * 100) : 0}%`;
+    }).catch(() => {});
 
   }
 
