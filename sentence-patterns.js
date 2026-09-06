@@ -40,7 +40,7 @@
       (categorySelect.value === "全部" || pattern.category === categorySelect.value)
     );
     if (!visible.some(pattern => pattern.id === selectedId)) selectedId = visible[0]?.id;
-    count.textContent = `${visible.length} 个句式`;
+    count.textContent = `${visible.length} 条语法`;
     list.innerHTML = visible.map(pattern => `
       <button type="button" data-id="${pattern.id}" class="${pattern.id === selectedId ? "active" : ""}">
         <strong>${pattern.pattern}</strong><span>${pattern.meaning}</span>
@@ -60,5 +60,5 @@
   });
   render();
 })().catch(() => {
-  document.getElementById("patternDetail").innerHTML = '<p class="empty-state">句式资料暂时无法载入。</p>';
+  document.getElementById("patternDetail").innerHTML = '<p class="empty-state">语法资料暂时无法载入。</p>';
 });
