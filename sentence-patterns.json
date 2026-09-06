@@ -1,0 +1,146 @@
+[
+  {
+    "id": "p001", "pattern": "我係……", "jyutping": "ngo5 hai6 …", "meaning": "我是……", "level": "入门", "category": "介绍", "usage": "介绍自己的身份、关系或所属。",
+    "examples": [
+      {"cantonese":"我係香港人。","jyutping":"ngo5 hai6 hoeng1 gong2 jan4","meaning":"我是香港人。"},
+      {"cantonese":"我係新嚟嘅。","jyutping":"ngo5 hai6 san1 lai4 ge3","meaning":"我是新来的。"},
+      {"cantonese":"我係佢朋友。","jyutping":"ngo5 hai6 keoi5 pang4 jau5","meaning":"我是他的朋友。"}
+    ]
+  },
+  {
+    "id": "p002", "pattern": "有冇……？", "jyutping": "jau5 mou5 …", "meaning": "有没有……？", "level": "入门", "category": "询问", "usage": "询问某物或某种情况是否存在。",
+    "examples": [
+      {"cantonese":"呢度有冇位呀？","jyutping":"ni1 dou6 jau5 mou5 wai2 aa3","meaning":"这里有没有座位？"},
+      {"cantonese":"你有冇帶遮？","jyutping":"nei5 jau5 mou5 daai3 ze1","meaning":"你有没有带伞？"},
+      {"cantonese":"附近有冇藥房？","jyutping":"fu6 gan6 jau5 mou5 joek6 fong4","meaning":"附近有没有药房？"}
+    ]
+  },
+  {
+    "id": "p003", "pattern": "可唔可以……？", "jyutping": "ho2 m4 ho2 ji5 …", "meaning": "可不可以……？", "level": "入门", "category": "请求", "usage": "礼貌地提出请求或询问许可。",
+    "examples": [
+      {"cantonese":"可唔可以幫我影張相？","jyutping":"ho2 m4 ho2 ji5 bong1 ngo5 jing2 zoeng1 soeng2","meaning":"可不可以帮我拍张照片？"},
+      {"cantonese":"可唔可以平啲呀？","jyutping":"ho2 m4 ho2 ji5 peng4 di1 aa3","meaning":"可不可以便宜一点？"},
+      {"cantonese":"可唔可以再講一次？","jyutping":"ho2 m4 ho2 ji5 zoi3 gong2 jat1 ci3","meaning":"可不可以再说一次？"}
+    ]
+  },
+  {
+    "id": "p004", "pattern": "我想……", "jyutping": "ngo5 soeng2 …", "meaning": "我想……", "level": "入门", "category": "表达", "usage": "表达想法、愿望或想要的东西。",
+    "examples": [
+      {"cantonese":"我想要杯凍檸茶。","jyutping":"ngo5 soeng2 jiu3 bui1 dung3 ning4 caa4","meaning":"我想要一杯冻柠茶。"},
+      {"cantonese":"我想去長洲。","jyutping":"ngo5 soeng2 heoi3 coeng4 zau1","meaning":"我想去长洲。"},
+      {"cantonese":"我想休息一陣。","jyutping":"ngo5 soeng2 jau1 sik1 jat1 zan6","meaning":"我想休息一会儿。"}
+    ]
+  },
+  {
+    "id": "p005", "pattern": "……喺邊度？", "jyutping": "… hai2 bin1 dou6", "meaning": "……在哪里？", "level": "入门", "category": "询问", "usage": "询问地点或位置。",
+    "examples": [
+      {"cantonese":"洗手間喺邊度？","jyutping":"sai2 sau2 gaan1 hai2 bin1 dou6","meaning":"洗手间在哪里？"},
+      {"cantonese":"地鐵站喺邊度？","jyutping":"dei6 tit3 zaam6 hai2 bin1 dou6","meaning":"地铁站在哪里？"},
+      {"cantonese":"你而家喺邊度？","jyutping":"nei5 ji4 gaa1 hai2 bin1 dou6","meaning":"你现在在哪里？"}
+    ]
+  },
+  {
+    "id": "p006", "pattern": "……咗未？", "jyutping": "… zo2 mei6", "meaning": "……了没有？", "level": "入门", "category": "询问", "usage": "询问一件事情是否已经完成。",
+    "examples": [
+      {"cantonese":"你食咗飯未？","jyutping":"nei5 sik6 zo2 faan6 mei6","meaning":"你吃饭了没有？"},
+      {"cantonese":"你買咗飛未？","jyutping":"nei5 maai5 zo2 fei1 mei6","meaning":"你买票了没有？"},
+      {"cantonese":"份功課做咗未？","jyutping":"fan6 gung1 fo3 zou6 zo2 mei6","meaning":"作业做了没有？"}
+    ]
+  },
+  {
+    "id": "p007", "pattern": "係咪……？", "jyutping": "hai6 mai6 …", "meaning": "是不是……？", "level": "入门", "category": "询问", "usage": "确认判断或已经掌握的信息。",
+    "examples": [
+      {"cantonese":"呢班車係咪去旺角㗎？","jyutping":"ni1 baan1 ce1 hai6 mai6 heoi3 wong6 gok3 gaa3","meaning":"这班车是不是去旺角的？"},
+      {"cantonese":"你係咪第一次嚟？","jyutping":"nei5 hai6 mai6 dai6 jat1 ci3 lai4","meaning":"你是不是第一次来？"},
+      {"cantonese":"今日係咪放假？","jyutping":"gam1 jat6 hai6 mai6 fong3 gaa3","meaning":"今天是不是放假？"}
+    ]
+  },
+  {
+    "id": "p008", "pattern": "使唔使……？", "jyutping": "sai2 m4 sai2 …", "meaning": "要不要／需不需要……？", "level": "初级", "category": "询问", "usage": "询问是否有需要，也可以主动提出帮助。",
+    "examples": [
+      {"cantonese":"使唔使幫手呀？","jyutping":"sai2 m4 sai2 bong1 sau2 aa3","meaning":"要不要帮忙？"},
+      {"cantonese":"使唔使預約？","jyutping":"sai2 m4 sai2 jyu6 joek3","meaning":"需不需要预约？"},
+      {"cantonese":"使唔使帶證件？","jyutping":"sai2 m4 sai2 daai3 zing3 gin6","meaning":"需不需要带证件？"}
+    ]
+  },
+  {
+    "id": "p009", "pattern": "一……就……", "jyutping": "jat1 … zau6 …", "meaning": "一……就……", "level": "初级", "category": "时间", "usage": "表示前一件事发生后，后一件事紧接着发生。",
+    "examples": [
+      {"cantonese":"我一落車就打畀你。","jyutping":"ngo5 jat1 lok6 ce1 zau6 daa2 bei2 nei5","meaning":"我一下车就打给你。"},
+      {"cantonese":"佢一返到屋企就瞓覺。","jyutping":"keoi5 jat1 faan1 dou3 uk1 kei2 zau6 fan3 gaau3","meaning":"他一回到家就睡觉。"},
+      {"cantonese":"一落雨，條街就塞車。","jyutping":"jat1 lok6 jyu5, tiu4 gaai1 zau6 sak1 ce1","meaning":"一下雨，街上就堵车。"}
+    ]
+  },
+  {
+    "id": "p010", "pattern": "如果……就……", "jyutping": "jyu4 gwo2 … zau6 …", "meaning": "如果……就……", "level": "初级", "category": "条件", "usage": "提出条件以及条件成立后的结果。",
+    "examples": [
+      {"cantonese":"如果聽日得閒，我哋就去行街。","jyutping":"jyu4 gwo2 ting1 jat6 dak1 haan4, ngo5 dei6 zau6 heoi3 haang4 gaai1","meaning":"如果明天有空，我们就去逛街。"},
+      {"cantonese":"如果太夜，就搭的士啦。","jyutping":"jyu4 gwo2 taai3 je6, zau6 daap3 dik1 si2 laa1","meaning":"如果太晚，就坐出租车吧。"},
+      {"cantonese":"如果唔明，就問我。","jyutping":"jyu4 gwo2 m4 ming4, zau6 man6 ngo5","meaning":"如果不明白，就问我。"}
+    ]
+  },
+  {
+    "id": "p011", "pattern": "因為……所以……", "jyutping": "jan1 wai6 … so2 ji5 …", "meaning": "因为……所以……", "level": "初级", "category": "因果", "usage": "说明原因以及由此产生的结果。",
+    "examples": [
+      {"cantonese":"因為今日落雨，所以我搭港鐵。","jyutping":"jan1 wai6 gam1 jat6 lok6 jyu5, so2 ji5 ngo5 daap3 gong2 tit3","meaning":"因为今天下雨，所以我坐港铁。"},
+      {"cantonese":"因為塞車，所以我遲咗。","jyutping":"jan1 wai6 sak1 ce1, so2 ji5 ngo5 ci4 zo2","meaning":"因为堵车，所以我迟到了。"},
+      {"cantonese":"因為間舖閂咗，所以買唔到。","jyutping":"jan1 wai6 gaan1 pou3 saan1 zo2, so2 ji5 maai5 m4 dou2","meaning":"因为店关门了，所以买不到。"}
+    ]
+  },
+  {
+    "id": "p012", "pattern": "不如……啦", "jyutping": "bat1 jyu4 … laa1", "meaning": "不如……吧", "level": "初级", "category": "建议", "usage": "提出一个可供大家考虑的建议。",
+    "examples": [
+      {"cantonese":"不如我哋搭的士啦。","jyutping":"bat1 jyu4 ngo5 dei6 daap3 dik1 si2 laa1","meaning":"不如我们坐出租车吧。"},
+      {"cantonese":"不如聽日先去啦。","jyutping":"bat1 jyu4 ting1 jat6 sin1 heoi3 laa1","meaning":"不如明天再去吧。"},
+      {"cantonese":"不如叫外賣啦。","jyutping":"bat1 jyu4 giu3 ngoi6 maai6 laa1","meaning":"不如叫外卖吧。"}
+    ]
+  },
+  {
+    "id": "p013", "pattern": "……緊", "jyutping": "… gan2", "meaning": "正在……", "level": "初级", "category": "时间", "usage": "放在动作后面，表示动作正在进行。",
+    "examples": [
+      {"cantonese":"我而家等緊巴士。","jyutping":"ngo5 ji4 gaa1 dang2 gan2 baa1 si2","meaning":"我现在正在等巴士。"},
+      {"cantonese":"佢沖緊涼。","jyutping":"keoi5 cung1 gan2 loeng4","meaning":"他正在洗澡。"},
+      {"cantonese":"我哋傾緊計。","jyutping":"ngo5 dei6 king1 gan2 gai2","meaning":"我们正在聊天。"}
+    ]
+  },
+  {
+    "id": "p014", "pattern": "越……越……", "jyutping": "jyut6 … jyut6 …", "meaning": "越……越……", "level": "初级", "category": "变化", "usage": "表示程度随着情况不断变化。",
+    "examples": [
+      {"cantonese":"呢排天氣越嚟越熱。","jyutping":"ni1 paai4 tin1 hei3 jyut6 lai4 jyut6 jit6","meaning":"最近天气越来越热。"},
+      {"cantonese":"我越聽越鍾意。","jyutping":"ngo5 jyut6 teng1 jyut6 zung1 ji3","meaning":"我越听越喜欢。"},
+      {"cantonese":"條路越行越窄。","jyutping":"tiu4 lou6 jyut6 haang4 jyut6 zaak3","meaning":"这条路越走越窄。"}
+    ]
+  },
+  {
+    "id": "p015", "pattern": "除咗……之外……", "jyutping": "ceoi4 zo2 … zi1 ngoi6 …", "meaning": "除了……以外……", "level": "中级", "category": "补充", "usage": "先排除或列出一项，再补充其他内容。",
+    "examples": [
+      {"cantonese":"除咗咖啡之外，呢度仲有奶茶。","jyutping":"ceoi4 zo2 gaa3 fe1 zi1 ngoi6, ni1 dou6 zung6 jau5 naai5 caa4","meaning":"除了咖啡以外，这里还有奶茶。"},
+      {"cantonese":"除咗星期日之外，我日日都得閒。","jyutping":"ceoi4 zo2 sing1 kei4 jat6 zi1 ngoi6, ngo5 jat6 jat6 dou1 dak1 haan4","meaning":"除了星期日以外，我每天都有空。"},
+      {"cantonese":"除咗佢之外，冇人知。","jyutping":"ceoi4 zo2 keoi5 zi1 ngoi6, mou5 jan4 zi1","meaning":"除了他以外，没有人知道。"}
+    ]
+  },
+  {
+    "id": "p016", "pattern": "差啲……", "jyutping": "caa1 di1 …", "meaning": "差点儿……", "level": "中级", "category": "叙述", "usage": "表示某件事几乎发生，但最后没有发生。",
+    "examples": [
+      {"cantonese":"我差啲搭錯車。","jyutping":"ngo5 caa1 di1 daap3 co3 ce1","meaning":"我差点坐错车。"},
+      {"cantonese":"頭先差啲跌親。","jyutping":"tau4 sin1 caa1 di1 dit3 can1","meaning":"刚才差点摔倒。"},
+      {"cantonese":"我差啲唔記得帶鎖匙。","jyutping":"ngo5 caa1 di1 m4 gei3 dak1 daai3 so2 si4","meaning":"我差点忘记带钥匙。"}
+    ]
+  },
+  {
+    "id": "p017", "pattern": "唔單止……仲……", "jyutping": "m4 daan1 zi2 … zung6 …", "meaning": "不但……还……", "level": "中级", "category": "补充", "usage": "说明某人或某物同时具备两种情况，后一项通常更进一步。",
+    "examples": [
+      {"cantonese":"呢間舖唔單止平，仲好食。","jyutping":"ni1 gaan1 pou3 m4 daan1 zi2 peng4, zung6 hou2 sik6","meaning":"这家店不但便宜，还很好吃。"},
+      {"cantonese":"佢唔單止識唱歌，仲識作曲。","jyutping":"keoi5 m4 daan1 zi2 sik1 coeng3 go1, zung6 sik1 zok3 kuk1","meaning":"他不但会唱歌，还会作曲。"},
+      {"cantonese":"今日唔單止凍，仲落雨。","jyutping":"gam1 jat6 m4 daan1 zi2 dung3, zung6 lok6 jyu5","meaning":"今天不但冷，还下雨。"}
+    ]
+  },
+  {
+    "id": "p018", "pattern": "與其……不如……", "jyutping": "jyu5 kei4 … bat1 jyu4 …", "meaning": "与其……不如……", "level": "中级", "category": "选择", "usage": "比较两个做法，并提出更合适的选择。",
+    "examples": [
+      {"cantonese":"與其喺度等，不如行過去。","jyutping":"jyu5 kei4 hai2 dou6 dang2, bat1 jyu4 haang4 gwo3 heoi3","meaning":"与其在这里等，不如走过去。"},
+      {"cantonese":"與其亂估，不如直接問佢。","jyutping":"jyu5 kei4 lyun6 gu2, bat1 jyu4 zik6 zip3 man6 keoi5","meaning":"与其乱猜，不如直接问他。"},
+      {"cantonese":"與其買新嘅，不如整返好佢。","jyutping":"jyu5 kei4 maai5 san1 ge3, bat1 jyu4 zing2 faan1 hou2 keoi5","meaning":"与其买新的，不如把它修好。"}
+    ]
+  }
+]
