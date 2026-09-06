@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日复习｜粤语学习</title>
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+</head>
+<body>
+<main class="review-shell">
+  <header class="page-heading"><h1>今日复习</h1></header>
+  <section id="reviewEmpty" class="plain-section" hidden><h2>今天完成了</h2><a class="text-action" href="vocabulary.html">继续学习新词 →</a></section>
+  <section id="reviewSession">
+    <div class="review-meta"><span id="reviewCount">0 / 0</span><span id="reviewScore">0 答对</span></div>
+    <article class="review-card">
+      <p id="reviewType" class="eyebrow"></p><button id="reviewAudio" type="button" hidden>播放录音</button>
+      <h2 id="reviewWord"></h2><p id="reviewJyutping" class="jyutping"></p>
+      <div id="reviewOptions" class="review-options"></div>
+      <form id="reviewForm" hidden><input id="reviewInput" autocomplete="off" placeholder="输入粤拼"><button type="submit">提交</button></form>
+      <div id="reviewFeedback" class="review-feedback" aria-live="polite"></div>
+    </article>
+  </section>
+</main>
+<audio id="reviewPlayer"></audio><script src="review.js"></script>
+</body>
+</html>

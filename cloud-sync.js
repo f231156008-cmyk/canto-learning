@@ -30,7 +30,9 @@
   function mergeLatestMap(cloudValue, localValue) {
     const merged = { ...(cloudValue || {}) };
     Object.entries(localValue || {}).forEach(([key, value]) => {
-      if (!merged[key] || Number(value?.updatedAt || 0) >= Number(merged[key]?.updatedAt || 0)) merged[key] = value;
+      const nextTime = Number(value?.updatedAt || value?.lastReviewedAt || 0);
+      const oldTime = Number(merged[key]?.updatedAt || merged[key]?.lastReviewedAt || 0);
+      if (!merged[key] || nextTime >= oldTime) merged[key] = value;
     });
     return merged;
   }
@@ -60,6 +62,7 @@
       vocabulary_routes: readJson("cantoVocabularyRoutes", {}),
       tone_stats: readJson("toneStats", { right: 0, total: 0, bad: [] }),
       tone_mark_stats: readJson("markStats", { right: 0, total: 0, bad: [] }),
+      srs_progress: readJson("cantoSrsProgress", {}),
       challenge_bests: readChallengeBests()
     };
   }
@@ -75,6 +78,7 @@
       vocabulary_routes: mergeLatestMap(cloud.vocabulary_routes, local.vocabulary_routes),
       tone_stats: chooseStats(cloud.tone_stats, local.tone_stats),
       tone_mark_stats: chooseStats(cloud.tone_mark_stats, local.tone_mark_stats),
+      srs_progress: mergeLatestMap(cloud.srs_progress, local.srs_progress),
       challenge_bests: bests
     };
   }
@@ -97,6 +101,7 @@
       localStorage.setItem("cantoVocabularyRoutes", JSON.stringify(state.app_state.vocabulary_routes || {}));
       localStorage.setItem("toneStats", JSON.stringify(state.app_state.tone_stats || { right: 0, total: 0, bad: [] }));
       localStorage.setItem("markStats", JSON.stringify(state.app_state.tone_mark_stats || { right: 0, total: 0, bad: [] }));
+      localStorage.setItem("cantoSrsProgress", JSON.stringify(state.app_state.srs_progress || {}));
       Object.entries(state.app_state.challenge_bests || {}).forEach(([key, value]) => localStorage.setItem(key, String(value)));
     }
     Object.entries(state.preferences || {}).forEach(([key, value]) => {

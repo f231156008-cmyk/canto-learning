@@ -1,4 +1,45 @@
 (function () {
+  const SRS_KEY = "cantoSrsProgress";
+  const SRS_INTERVALS = [10 * 60e3, 864e5, 3 * 864e5, 7 * 864e5, 14 * 864e5, 30 * 864e5, 60 * 864e5, 120 * 864e5];
+
+  function readSrs() {
+    try { return JSON.parse(localStorage.getItem(SRS_KEY) || "{}"); }
+    catch (_error) { return {}; }
+  }
+
+  function reviewWord(wordId, isCorrect) {
+    if (wordId === null || wordId === undefined) return;
+    const state = readSrs();
+    const key = String(wordId);
+    const previous = state[key] || { stage: -1, correctStreak: 0, lapses: 0 };
+    const stage = isCorrect ? Math.min(previous.stage + 1, SRS_INTERVALS.length - 1) : 0;
+    const now = Date.now();
+    state[key] = { wordId: Number(wordId), stage, dueAt: now + SRS_INTERVALS[stage], correctStreak: isCorrect ? previous.correctStreak + 1 : 0, lapses: previous.lapses + (isCorrect ? 0 : 1), lastReviewedAt: now };
+    localStorage.setItem(SRS_KEY, JSON.stringify(state));
+  }
+
+  window.cantoSrs = {
+    read: readSrs,
+    review: reviewWord,
+    due: () => Object.values(readSrs()).filter(item => Number(item.dueAt || 0) <= Date.now()).sort((a, b) => a.dueAt - b.dueAt),
+    stats: () => { const items = Object.values(readSrs()); return { total: items.length, due: items.filter(item => Number(item.dueAt || 0) <= Date.now()).length, mature: items.filter(item => item.stage >= 4).length }; }
+  };
+
+  function seedKnownWords() {
+    const state = readSrs();
+    const attempts = (() => { try { return JSON.parse(localStorage.getItem("cantoAttempts") || "[]"); } catch (_error) { return []; } })();
+    const progress = (() => { try { return JSON.parse(localStorage.getItem("cantoStandaloneProgress") || "{}"); } catch (_error) { return {}; } })();
+    const ids = new Set(attempts.map(item => item.wordId).filter(id => id !== null && id !== undefined));
+    Object.entries(progress).forEach(([id, status]) => { if (status === "mastered") ids.add(Number(id)); });
+    let changed = false;
+    ids.forEach(id => {
+      if (state[id]) return;
+      state[id] = { wordId: Number(id), stage: 0, dueAt: Date.now(), correctStreak: 0, lapses: 0, lastReviewedAt: 0 };
+      changed = true;
+    });
+    if (changed) localStorage.setItem(SRS_KEY, JSON.stringify(state));
+  }
+
   const pages = [
     ["Canto.html", "首页"], ["pronunciation.html", "发音"], ["vocabulary.html", "词汇"],
     ["quiz.html", "练习"], ["characters.html", "字形测试"],
@@ -22,6 +63,7 @@
     if (latest && latest.type === entry.type && latest.prompt === entry.prompt && latest.answer === entry.answer && Date.now() - new Date(latest.time).getTime() < 3000) return latest;
     records.unshift(entry);
     localStorage.setItem(key, JSON.stringify(records.slice(0, 1000)));
+    reviewWord(entry.wordId, entry.isCorrect);
     if (window.cantoCloud) window.cantoCloud.queueSync();
     return entry;
   };
@@ -64,10 +106,16 @@
     if (category || level) {
       document.getElementById("continueTitle").textContent = [category, level].filter(Boolean).join(" · ");
     }
+    const due = window.cantoSrs.stats().due;
+    const dueCount = document.getElementById("homeDueCount");
+    if (dueCount) dueCount.textContent = String(due);
+    const reviewLink = document.getElementById("homeReviewLink");
+    if (reviewLink) reviewLink.textContent = due ? `开始复习 ${due} 词 →` : "暂无待复习 →";
 
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    seedKnownWords();
     addSiteHeader();
     setupHome();
     setupCloud();

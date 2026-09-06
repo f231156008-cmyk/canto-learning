@@ -1,14 +1,20 @@
 (function () {
-  const attempts = JSON.parse(localStorage.getItem("cantoAttempts") || "[]");
-  const masteredChars = JSON.parse(localStorage.getItem("cantoMasteredChars") || "[]");
-  const legacy = JSON.parse(localStorage.getItem("markStats") || '{"right":0,"total":0,"bad":[]}');
-  const total = attempts.length || Number(legacy.total) || 0;
-  const correct = attempts.length ? attempts.filter(item => item.isCorrect).length : Number(legacy.right) || 0;
-  const wrong = attempts.length ? attempts.length - correct : (Array.isArray(legacy.bad) ? legacy.bad.length : 0);
-  document.getElementById("attemptCount").textContent = total;
-  document.getElementById("accuracyRate").textContent = total ? `${Math.round(correct / total * 100)}%` : "—";
-  document.getElementById("wrongCount").textContent = wrong;
-  document.getElementById("masteredCharCount").textContent = masteredChars.length;
+  function renderStats() {
+    const attempts = JSON.parse(localStorage.getItem("cantoAttempts") || "[]");
+    const masteredChars = JSON.parse(localStorage.getItem("cantoMasteredChars") || "[]");
+    const legacy = JSON.parse(localStorage.getItem("markStats") || '{"right":0,"total":0,"bad":[]}');
+    const total = attempts.length || Number(legacy.total) || 0;
+    const correct = attempts.length ? attempts.filter(item => item.isCorrect).length : Number(legacy.right) || 0;
+    const wrong = attempts.length ? attempts.length - correct : (Array.isArray(legacy.bad) ? legacy.bad.length : 0);
+    document.getElementById("attemptCount").textContent = total;
+    document.getElementById("accuracyRate").textContent = total ? `${Math.round(correct / total * 100)}%` : "—";
+    document.getElementById("wrongCount").textContent = wrong;
+    document.getElementById("masteredCharCount").textContent = masteredChars.length;
+    const srsStats = window.cantoSrs?.stats?.() || { total: 0, due: 0 };
+    document.getElementById("srsTotalCount").textContent = srsStats.total;
+    document.getElementById("srsDueCount").textContent = srsStats.due;
+  }
+  renderStats();
   document.getElementById("lastCategory").textContent = localStorage.getItem("cantoLearningCategory") || "未选择";
   document.getElementById("lastLevel").textContent = localStorage.getItem("cantoLearningLevel") || "未选择";
   document.getElementById("quizCategory").textContent = localStorage.getItem("cantoQuizCategory") || "全部主题";
@@ -53,7 +59,7 @@
   }
 
   document.addEventListener("canto-cloud-ready", event => bindAccount(event.detail.client, event.detail.session), { once: true });
-  document.addEventListener("canto-cloud-synced", () => location.reload(), { once: true });
+  document.addEventListener("canto-cloud-synced", renderStats);
   document.addEventListener("canto-cloud-error", event => {
     loginMessage.textContent = `连接失败：${event.detail.message || "请稍后重试"}`;
   });
