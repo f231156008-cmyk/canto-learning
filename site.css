@@ -441,3 +441,41 @@ legend { background: #faf9f6; }
   .placement-link { display: block; margin: 10px 0 0; text-align: center; }
   .placement-options { grid-template-columns: 1fr; }
 }
+
+/* Typography scale — UI update */
+:root {
+  --type-xs: 12px;
+  --type-sm: 14px;
+  --type-base: clamp(16px, .16vw + 15px, 17px);
+  --type-lg: clamp(19px, .35vw + 17px, 21px);
+  --type-xl: clamp(23px, .65vw + 20px, 28px);
+  --type-2xl: clamp(30px, 1.4vw + 24px, 42px);
+  --type-display: clamp(38px, 2.6vw + 25px, 54px);
+}
+body { font-size: var(--type-base); line-height: 1.66; }
+.site-name { font-size: var(--type-lg); font-weight: 650; letter-spacing: .08em; }
+.site-nav a { font-size: var(--type-sm); letter-spacing: .025em; }
+h1 { font-size: var(--type-2xl); line-height: 1.16; }
+h2 { font-size: var(--type-xl); line-height: 1.28; }
+h3 { font-size: var(--type-lg); line-height: 1.38; }
+.home-heading h1 { font-size: var(--type-display); }
+body:not(.home-page) > h1,
+body:not(.home-page) .page-heading h1,
+body:not(.home-page) main > h1 { max-width: 760px; margin: 20px 0 34px; font-size: var(--type-2xl); line-height: 1.16; letter-spacing: .035em; }
+.continue-section h2 { font-size: var(--type-2xl); }
+.home-index h2 { font-size: var(--type-xl); }
+.index-row strong { font-size: var(--type-lg); font-weight: 560; }
+.quiet, .index-row span { font-size: 14px; }
+.eyebrow, .sync-indicator, .record-type, .record-item time { font-size: var(--type-xs); }
+.site-tools { display: flex; align-items: center; justify-content: flex-end; gap: 14px; white-space: nowrap; }
+.language-toggle { min-width: 31px !important; min-height: 31px !important; margin: 0 !important; padding: 2px 7px !important; border: 1px solid #aaa59a !important; border-radius: 50% !important; background: transparent !important; box-shadow: none !important; color: #383631 !important; font-size: 13px !important; line-height: 1 !important; }
+.language-toggle:hover { border-color: #a3312c !important; color: #a3312c !important; transform: none !important; }
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  .home-heading h1 { font-size: 39px; }
+  .continue-section h2 { font-size: 30px; }
+  .site-nav a { font-size: 12px; }
+  .site-tools { gap: 9px; }
+}

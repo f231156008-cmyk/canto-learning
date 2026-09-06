@@ -1,5 +1,7 @@
 (function () {
   const SRS_KEY = "cantoSrsProgress";
+  const LANGUAGE_KEY = "cantoUiLanguage";
+  const OPENCC_SRC = "https://cdn.jsdelivr.net/npm/opencc-js@1.4.1/dist/umd/full.js";
   const SRS_INTERVALS = [10 * 60e3, 864e5, 3 * 864e5, 7 * 864e5, 14 * 864e5, 30 * 864e5, 60 * 864e5, 120 * 864e5];
 
   function readSrs() {
@@ -95,8 +97,51 @@
     const current = location.pathname.split("/").pop() || "Canto.html";
     const header = document.createElement("header");
     header.className = "site-header";
-    header.innerHTML = `<a class="site-name" href="Canto.html">粵語學習</a><nav class="site-nav" aria-label="主导航">${pages.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav><span class="sync-indicator">本地保存</span>`;
+    header.innerHTML = `<a class="site-name" href="Canto.html">粵語學習</a><nav class="site-nav" aria-label="主导航">${pages.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="site-tools"><button class="language-toggle" type="button" aria-label="切换简体或繁体中文">简</button><span class="sync-indicator">本地保存</span></div>`;
     document.body.prepend(header);
+  }
+
+  async function setupLanguageToggle() {
+    const button = document.querySelector(".language-toggle");
+    if (!button) return;
+    let language = localStorage.getItem(LANGUAGE_KEY) || "zh-Hant";
+    let observer;
+    try {
+      if (!window.OpenCC) await loadScript(OPENCC_SRC);
+    } catch (_error) {
+      button.disabled = true;
+      return;
+    }
+    const convertPage = () => {
+      if (observer) observer.disconnect();
+      const converter = window.OpenCC.Converter(language === "zh-Hans" ? { from: "hk", to: "cn" } : { from: "cn", to: "hk" });
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent || ["SCRIPT", "STYLE", "TEXTAREA"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+          return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+      });
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => { node.nodeValue = converter(node.nodeValue); });
+      document.querySelectorAll("[placeholder], [title], [aria-label]").forEach(element => {
+        ["placeholder", "title", "aria-label"].forEach(attribute => {
+          if (element.hasAttribute(attribute)) element.setAttribute(attribute, converter(element.getAttribute(attribute)));
+        });
+      });
+      document.documentElement.lang = language === "zh-Hans" ? "zh-CN" : "zh-HK";
+      button.textContent = language === "zh-Hans" ? "繁" : "简";
+      button.title = language === "zh-Hans" ? "切换至繁体中文" : "切换至简体中文";
+      if (observer) observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    };
+    observer = new MutationObserver(convertPage);
+    convertPage();
+    button.addEventListener("click", () => {
+      language = language === "zh-Hans" ? "zh-Hant" : "zh-Hans";
+      localStorage.setItem(LANGUAGE_KEY, language);
+      convertPage();
+    });
   }
 
   function setupHome() {
@@ -117,6 +162,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     seedKnownWords();
     addSiteHeader();
+    setupLanguageToggle();
     setupHome();
     setupCloud();
   });
